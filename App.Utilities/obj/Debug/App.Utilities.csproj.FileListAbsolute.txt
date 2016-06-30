@@ -1,0 +1,5 @@
+G:\STUDENT PROJECTS\ECart\App.Utilities\bin\Debug\App.Utilities.dll
+G:\STUDENT PROJECTS\ECart\App.Utilities\bin\Debug\App.Utilities.pdb
+G:\STUDENT PROJECTS\ECart\App.Utilities\obj\Debug\App.Utilities.dll
+G:\STUDENT PROJECTS\ECart\App.Utilities\obj\Debug\App.Utilities.pdb
+G:\STUDENT PROJECTS\ECart\App.Utilities\obj\Debug\App.Utilities.csprojResolveAssemblyReference.cache

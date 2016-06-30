@@ -1,0 +1,12 @@
+G:\STUDENT PROJECTS\ECart\App.DBAccess\bin\Debug\App.DBAccess.dll
+G:\STUDENT PROJECTS\ECart\App.DBAccess\bin\Debug\App.DBAccess.pdb
+G:\STUDENT PROJECTS\ECart\App.DBAccess\obj\Debug\App.DBAccess.csprojResolveAssemblyReference.cache
+G:\STUDENT PROJECTS\ECart\App.DBAccess\obj\Debug\App.DBAccess.dll
+G:\STUDENT PROJECTS\ECart\App.DBAccess\obj\Debug\App.DBAccess.pdb
+G:\STUDENT PROJECTS\ECart\App.DBAccess\bin\Debug\App.DBAccess.dll.config
+G:\STUDENT PROJECTS\ECart\App.DBAccess\bin\Debug\App.Poco.dll
+G:\STUDENT PROJECTS\ECart\App.DBAccess\bin\Debug\EntityFramework.dll
+G:\STUDENT PROJECTS\ECart\App.DBAccess\bin\Debug\EntityFramework.SqlServer.dll
+G:\STUDENT PROJECTS\ECart\App.DBAccess\bin\Debug\App.Poco.pdb
+G:\STUDENT PROJECTS\ECart\App.DBAccess\bin\Debug\EntityFramework.xml
+G:\STUDENT PROJECTS\ECart\App.DBAccess\bin\Debug\EntityFramework.SqlServer.xml

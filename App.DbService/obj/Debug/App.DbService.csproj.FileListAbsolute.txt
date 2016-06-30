@@ -1,0 +1,15 @@
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\App.DbService.dll.config
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\App.DbService.dll
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\App.DbService.pdb
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\App.Poco.dll
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\EntityFramework.dll
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\EntityFramework.SqlServer.dll
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\App.Poco.pdb
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\EntityFramework.xml
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\EntityFramework.SqlServer.xml
+G:\STUDENT PROJECTS\ECart\App.DbService\obj\Debug\App.DbService.csprojResolveAssemblyReference.cache
+G:\STUDENT PROJECTS\ECart\App.DbService\obj\Debug\App.DbService.dll
+G:\STUDENT PROJECTS\ECart\App.DbService\obj\Debug\App.DbService.pdb
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\App.DBAccess.dll
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\AutoMapper.dll
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\App.DBAccess.pdb
