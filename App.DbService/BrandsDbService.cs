@@ -10,7 +10,7 @@ using AutoMapper;
 
 namespace App.DbService
 {
-    interface IBrandsDbService
+    public interface IBrandsDbService
     { 
         ActionDetails CreateBrands(BrandBo brand);
         ActionDetails ReadBrands(string DomainId);

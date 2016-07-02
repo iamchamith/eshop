@@ -8,10 +8,9 @@ using App.Poco;
 using App.Bo;
 using AutoMapper;
 
-
 namespace App.DbService
 {
-    interface IUserDbService {
+    public interface IUserDbService {
 
         ActionDetails Authenticate(UserBo user);
         ActionDetails RegisterUser(UserBo user);

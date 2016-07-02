@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Utilities", "App.Utilit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Ecart", "Api.Ecart\Api.Ecart.csproj", "{6A55E05D-2DB5-4DC0-BF4D-A0C99F2056F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{8141D8D7-1DD7-44BE-90CA-2ECE1997ABE0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,10 +57,6 @@ Global
 		{6A55E05D-2DB5-4DC0-BF4D-A0C99F2056F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A55E05D-2DB5-4DC0-BF4D-A0C99F2056F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A55E05D-2DB5-4DC0-BF4D-A0C99F2056F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8141D8D7-1DD7-44BE-90CA-2ECE1997ABE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8141D8D7-1DD7-44BE-90CA-2ECE1997ABE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8141D8D7-1DD7-44BE-90CA-2ECE1997ABE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8141D8D7-1DD7-44BE-90CA-2ECE1997ABE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

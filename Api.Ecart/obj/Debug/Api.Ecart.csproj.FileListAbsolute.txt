@@ -80,3 +80,17 @@ G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\Microsoft.Owin.Security.Twitter.xml
 G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 G:\STUDENT PROJECTS\ECart\Api.Ecart\obj\Debug\Api.Ecart.dll
 G:\STUDENT PROJECTS\ECart\Api.Ecart\obj\Debug\Api.Ecart.pdb
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.Bo.dll
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.DbService.dll
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.UnitTest.dll
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.Utilities.dll
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\AutoMapper.dll
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.DBAccess.dll
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.Poco.dll
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.Bo.pdb
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.DbService.pdb
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.UnitTest.pdb
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.Utilities.pdb
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\AutoMapper.xml
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.DBAccess.pdb
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.Poco.pdb
