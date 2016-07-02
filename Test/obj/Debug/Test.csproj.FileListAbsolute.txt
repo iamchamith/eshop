@@ -8,3 +8,4 @@ G:\STUDENT PROJECTS\ECart\Test\obj\Debug\Test.Properties.Resources.resources
 G:\STUDENT PROJECTS\ECart\Test\obj\Debug\Test.csproj.GenerateResource.Cache
 G:\STUDENT PROJECTS\ECart\Test\obj\Debug\Test.exe
 G:\STUDENT PROJECTS\ECart\Test\obj\Debug\Test.pdb
+G:\STUDENT PROJECTS\ECart\Test\bin\Debug\AutoMapper.xml

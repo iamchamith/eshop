@@ -48,6 +48,8 @@
     <Compile Include="ProductsSortBo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SiteGlobleVariableBo.cs" />
+    <Compile Include="UserBo.cs" />
+    <Compile Include="UserChangePasswordBo.cs" />
     <Compile Include="UserDomainBo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

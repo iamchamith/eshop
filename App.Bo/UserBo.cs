@@ -16,5 +16,6 @@ namespace App.Bo
         public bool? EmailConfirmed { get; set; }
         public string DomainId { get; set; }
         public string Token { get; set; }
+        public string Domain { get; set; }
     }
 }

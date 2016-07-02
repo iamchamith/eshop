@@ -13,3 +13,8 @@ G:\STUDENT PROJECTS\ECart\App.DbService\obj\Debug\App.DbService.pdb
 G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\App.DBAccess.dll
 G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\AutoMapper.dll
 G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\App.DBAccess.pdb
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\App.Bo.dll
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\App.Utilities.dll
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\App.Bo.pdb
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\App.Utilities.pdb
+G:\STUDENT PROJECTS\ECart\App.DbService\bin\Debug\AutoMapper.xml
