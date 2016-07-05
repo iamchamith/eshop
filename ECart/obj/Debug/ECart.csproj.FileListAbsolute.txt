@@ -77,7 +77,6 @@ G:\STUDENT PROJECTS\ECart\ECart\bin\Microsoft.Owin.Security.OAuth.xml
 G:\STUDENT PROJECTS\ECart\ECart\bin\Microsoft.Owin.Security.Google.xml
 G:\STUDENT PROJECTS\ECart\ECart\bin\Microsoft.Owin.Security.Twitter.xml
 G:\STUDENT PROJECTS\ECart\ECart\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-G:\STUDENT PROJECTS\ECart\ECart\obj\Debug\ECart.csprojResolveAssemblyReference.cache
 G:\STUDENT PROJECTS\ECart\ECart\obj\Debug\ECart.dll
 G:\STUDENT PROJECTS\ECart\ECart\obj\Debug\ECart.pdb
 G:\STUDENT PROJECTS\ECart\ECart\bin\AutoMapper.dll

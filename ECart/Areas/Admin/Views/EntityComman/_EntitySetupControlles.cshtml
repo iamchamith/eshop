@@ -1,0 +1,11 @@
+﻿@using ECart.Areas.Admin.Models;
+@model  EntitySetupHeaderViewModel
+<div class="row">
+    <div class="col-lg-8">
+        <h4> @Model.Header</h4>
+    </div>
+    <div class="col-lg-4" style="text-align:right">
+        <a href="@Model.CancelNavigateUrl"  class="btn btn-success">Cancel</a>
+        <input type="button" class="btn btn-success" name="@Model.SaveButtonId" value="Save" id="@Model.SaveButtonId"/>
+    </div>
+</div>

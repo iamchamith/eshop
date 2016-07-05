@@ -1,5 +1,4 @@
 G:\STUDENT PROJECTS\ECart\App.Bo\bin\Debug\App.Bo.dll
 G:\STUDENT PROJECTS\ECart\App.Bo\bin\Debug\App.Bo.pdb
-G:\STUDENT PROJECTS\ECart\App.Bo\obj\Debug\App.Bo.csprojResolveAssemblyReference.cache
 G:\STUDENT PROJECTS\ECart\App.Bo\obj\Debug\App.Bo.dll
 G:\STUDENT PROJECTS\ECart\App.Bo\obj\Debug\App.Bo.pdb

@@ -1,0 +1,11 @@
+﻿@using ECart.Areas.Admin.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+@{Html.RenderAction("_EntityTop", "EntityComman", new { type = EntityHeader.Items }); }
+
+
+

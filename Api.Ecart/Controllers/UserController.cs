@@ -24,6 +24,12 @@ namespace Api.Ecart.Controllers
         public JsonResult Authonticate(UserViewModel user) {
 
             Mapper.CreateMap<UserViewModel, UserBo>();
+            var response = userService.Authenticate(Mapper.Map<UserBo>(user));
+            if (response.ResponseCode == App.Utilities.ResponseCode.Success)
+            {
+                Mapper.CreateMap<UserBo, SessionModel>();
+                Session["user"] = Mapper.Map<SessionModel>((UserBo)response.Content);
+            }
             return new JsonContractResult
             {
                 Data =

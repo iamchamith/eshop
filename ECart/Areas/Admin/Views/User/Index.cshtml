@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+ 
+@{Html.RenderAction("_UpdateDomain", "User"); }
+<hr />
+@{Html.RenderAction("_UpdateSettings", "User"); }
+<hr />
+@{Html.RenderAction("_ChangePassword", "User"); }
+<br /><br />

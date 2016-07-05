@@ -209,11 +209,13 @@
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\ProductsImageViewModel.cs" />
     <Compile Include="Models\ProductsSortViewModel.cs" />
+    <Compile Include="Models\SessionModel.cs" />
     <Compile Include="Models\SiteGlobleVariableViewModel.cs" />
     <Compile Include="Models\UserDomainViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utility\GlobleConfig.cs" />
     <Compile Include="Utility\JsonContractResult.cs" />
   </ItemGroup>
   <ItemGroup>

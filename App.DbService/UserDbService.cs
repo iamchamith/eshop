@@ -15,7 +15,7 @@ namespace App.DbService
         ActionDetails Authenticate(UserBo user);
         ActionDetails RegisterUser(UserBo user);
         ActionDetails ChangePassword(UserChangePasswordBo user);
-        ActionDetails ReadUserInfo(UserBo user);
+        ActionDetails ReadUserInfo(string email);
     }
 
 
@@ -28,7 +28,7 @@ namespace App.DbService
                 var userInfo = (from users in dba.Users
                                      join userdomain in dba.UserDomains on users.UserDomains.ToList().FirstOrDefault().DomainId equals userdomain.DomainId
                                      where users.Email == user.Email && users.Password == user.Password
-                                     select new { emailConfirim = user.EmailConfirmed,name = user.Name,domainId = userdomain.DomainId }).FirstOrDefault();
+                                     select new { emailConfirim = users.EmailConfirmed,name = users.Name,domainId = userdomain.DomainId,email = users.Email }).FirstOrDefault();
 
                 if (userInfo == null)
                 {
@@ -36,9 +36,10 @@ namespace App.DbService
                 }
 
                 var x = new UserBo {
-                     Name = userInfo.name,
-                     EmailConfirmed =userInfo.emailConfirim,
-                     DomainId = userInfo.domainId
+                    Name = userInfo.name,
+                    EmailConfirmed = userInfo.emailConfirim,
+                    DomainId = userInfo.domainId,
+                    Email = userInfo.email
                 };
 
                 return ResponseMessage.Success(content: x);
@@ -51,12 +52,38 @@ namespace App.DbService
 
         public ActionDetails ChangePassword(UserChangePasswordBo user)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (Authenticate(new UserBo
+                {
+                    Email = user.Email,
+                    Password = user.Password
+                }).ResponseCode != ResponseCode.Success)
+                {
+                    throw new Exception("invalied current password");
+                }
+
+                var result = dba.Users.Where(p => p.Email == user.Email).First();
+                result.Password = user.NewPassword;
+                return ResponseMessage.Success(content: null,message:"password change is success");
+            }
+            catch (Exception ex) {
+
+                return ResponseMessage.Error(ex, "invalied current password", responseCode: ResponseCode.ValidationError);
+            }
         }
 
-        public ActionDetails ReadUserInfo(UserBo user)
+        public ActionDetails ReadUserInfo(string email)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = dba.Users.Where(p=>p.Email == email).First();
+                return ResponseMessage.Success(content: result);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage.Error(ex, "user not found", responseCode: ResponseCode.ValidationError);
+            }
         }
 
         public ActionDetails RegisterUser(UserBo user)
@@ -89,5 +116,44 @@ namespace App.DbService
                 return ResponseMessage.Error(ex, "registration is not success", responseCode: ResponseCode.ValidationError);
             }
         }
+
+        public ActionDetails ConfirmEmail(string token) {
+
+            try
+            {
+                var response = dba.Users.Where(p => p.Token == token).FirstOrDefault();
+                if (response == null)
+                {
+                    throw new Exception("invalied token");
+                }
+                response.EmailConfirmed = true;
+                dba.SaveChanges();
+
+                var userInfo = (from users in dba.Users
+                                join userdomain in dba.UserDomains on users.UserDomains.ToList().FirstOrDefault().DomainId equals userdomain.DomainId
+                                where users.Email == response.Email 
+                                select new { emailConfirim = users.EmailConfirmed, name = users.Name, domainId = userdomain.DomainId, email = users.Email }).FirstOrDefault();
+
+
+                if (userInfo == null)
+                {
+                    throw new Exception("invalied login");
+                }
+
+                var x = new UserBo
+                {
+                    Name = userInfo.name,
+                    EmailConfirmed = userInfo.emailConfirim,
+                    DomainId = userInfo.domainId,
+                    Email = userInfo.email
+                };
+                return ResponseMessage.Success(content: x);
+            }
+            catch (Exception ex) {
+
+                return ResponseMessage.Error(ex, "invalied token", responseCode: ResponseCode.ValidationError);
+            }
+        }
+ 
     }
 }

@@ -1,0 +1,28 @@
+﻿@using ECart.Areas.Admin.Models
+<ul class="nav" id="side-menu">
+ 
+    <li>
+        <a href="/Admin/Dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+    </li>
+    <li>
+        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Entity<span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+            <li>
+                <a href="/admin/@EntityHeader.Brands.ToString().ToLower()">Brands</a>
+            </li>
+            <li>
+                <a href="/admin/@EntityHeader.Categories.ToString().ToLower()">Categories</a>
+            </li>
+            <li>
+                <a href="/admin/@EntityHeader.Items.ToString().ToLower()">Products</a>
+            </li>
+        </ul>
+        <!-- /.nav-second-level -->
+    </li>
+    <li>
+        <a href="/Admin/Template"><i class="fa fa-edit fa-fw"></i>Template</a>
+    </li>
+    <li>
+        <a href="/Admin/Help"><i class="fa fa-edit fa-fw"></i>Help</a>
+    </li>
+</ul>
