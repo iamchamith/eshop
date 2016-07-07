@@ -13,12 +13,12 @@ namespace Api.Ecart.Controllers
     public class BrandsController : BaseController
     {
         // GET: Brands
-        public JsonResult ReaBrands()
+        public JsonResult ReadBrands()
         {
             return new JsonContractResult
             {
                 Data =
-                new { data = brandsService.ReadBrands("123") },
+                new { data = brandsService.ReadBrands("446475") },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -32,9 +32,10 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        [HttpPost]
         public JsonResult UpdateBrands(BrandViewModel brand)
         {
+            brand.DomainId = "446475";
             Mapper.CreateMap<BrandViewModel, BrandBo>();
             return new JsonContractResult
             {
@@ -43,9 +44,11 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        [HttpPost]
         public JsonResult CreateBrands(BrandViewModel brand) {
 
+            brand.BrandId = Guid.NewGuid().ToString();
+            brand.DomainId = "446475";
             Mapper.CreateMap<BrandViewModel, BrandBo>();
             return new JsonContractResult
             {
@@ -54,10 +57,9 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        [HttpPost]
         public JsonResult DeleteBrand(string brandId)
         {
-
             Mapper.CreateMap<BrandViewModel, BrandBo>();
             return new JsonContractResult
             {
@@ -66,7 +68,8 @@ namespace Api.Ecart.Controllers
                {
                    data = brandsService.DeleteBrand(Mapper.Map<BrandBo>(new BrandViewModel
                    {
-                       BrandId = brandId
+                       BrandId = brandId,
+                       DomainId = "446475"
                    }))
                },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet

@@ -487,4 +487,3 @@ var TownsuiteHelpers;
         });
     });
 })(TownsuiteHelpers || (TownsuiteHelpers = {}));
-//# sourceMappingURL=helpers_ts.js.map

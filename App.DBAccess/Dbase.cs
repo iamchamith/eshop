@@ -8,7 +8,7 @@
     public partial class Dbase : DbContext
     {
         public Dbase()
-            : base("name=Dbase")
+            : base(@"Data Source=DELL\SQLEXPRESS;Initial Catalog=ECART;Integrated Security=True")
         {
         }
 

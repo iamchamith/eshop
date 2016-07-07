@@ -12,6 +12,5 @@ namespace App.Utilities
         ValidationError = 2,
         Warning = 3,
         Info = 4
-       
     }
 }

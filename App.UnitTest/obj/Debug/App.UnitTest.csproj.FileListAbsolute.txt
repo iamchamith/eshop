@@ -2,3 +2,4 @@ G:\STUDENT PROJECTS\ECart\App.UnitTest\bin\Debug\App.UnitTest.dll
 G:\STUDENT PROJECTS\ECart\App.UnitTest\bin\Debug\App.UnitTest.pdb
 G:\STUDENT PROJECTS\ECart\App.UnitTest\obj\Debug\App.UnitTest.dll
 G:\STUDENT PROJECTS\ECart\App.UnitTest\obj\Debug\App.UnitTest.pdb
+G:\STUDENT PROJECTS\ECart\App.UnitTest\obj\Debug\App.UnitTest.csprojResolveAssemblyReference.cache

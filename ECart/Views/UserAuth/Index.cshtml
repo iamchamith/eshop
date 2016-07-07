@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutFront.cshtml";
 }
@@ -17,6 +16,8 @@
     </div>
 </div>
 
+<input type="hidden" id="hndBaseUrl" value="@ECart.Utilities.Paths.ApiBase" />
+
 @{Html.RenderAction("_Login"); }
 @{Html.RenderAction("_Register"); }
 @{Html.RenderAction("_ForgetPassword"); }
@@ -24,3 +25,8 @@
 
 
 
+@section moduleScript{
+     <script src="~/asset/ts/appts/comman/Enums.js"></script>
+    <script src="~/asset/ts/appts/comman/ajax.js"></script>
+    <script src="~/asset/ts/appts/user/userAuthontication.js"></script>
+}

@@ -1,13 +1,13 @@
 ﻿/// <reference path="../comman/ajax.ts" />
 module Ecart.Auth {
 
-    const base = "";
-    const login = base + "";
-    const register = base + "";
-    const emailValidation = base + "";
-    const changePassword = base + "";
-    const UpdateUser = base + "";
-
+    const baseApi = $('#hndBaseUrl').val();
+    const login = baseApi + "/User/Authonticate";
+    const register = baseApi + "";
+    const emailValidation = baseApi + "";
+    const changePassword = baseApi + "";
+    const UpdateUser = baseApi;
+    const Home = "/Admin/Dashboard"
     $(function () {
 
         view.login();
@@ -24,7 +24,17 @@ module Ecart.Auth {
         $('#btnLinkForgetPassword').click(function () {
             view.forgetPassword();
         });
- 
+
+        $('#btnRegister').on('click', function () {
+            alert();
+        });
+        $('#btnLogin').on('click', function () {
+            auth.login(login, {
+                Email: $('#txtLoginEmail').val(),
+                Password: $('#txtLogginPassword').val()
+            });
+        });
+
     });
 
     var view = {
@@ -57,8 +67,18 @@ module Ecart.Auth {
 
             });
         },
-        login: function () {
+        login: function (url: string, data: any): any {
+            new Ecart.Ajax.apiConnector().callservice(url, data, Ajax.webMethod.Post).done(function (e) {
 
+                console.error(e);
+                if (e.data.responseCode == Ecart.Enums.ResponseCode.Success) {
+                    $(location).attr('href', Home);
+                } else if (e.data.responseCode == Ecart.Enums.ResponseCode.ValidationError) {
+                    alert('invalied username or password');
+                } else {
+                    console.error(e);
+                }
+            });
         },
         emailValidate: function () {
 

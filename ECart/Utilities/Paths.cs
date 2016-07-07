@@ -7,6 +7,6 @@ namespace ECart.Utilities
 {
     public class Paths
     {
-        public const string ApiBase = "";
+        public const string ApiBase = "http://localhost:16666";
     }
 }

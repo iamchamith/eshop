@@ -80,3 +80,4 @@ G:\STUDENT PROJECTS\ECart\ECart\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 G:\STUDENT PROJECTS\ECart\ECart\obj\Debug\ECart.dll
 G:\STUDENT PROJECTS\ECart\ECart\obj\Debug\ECart.pdb
 G:\STUDENT PROJECTS\ECart\ECart\bin\AutoMapper.dll
+G:\STUDENT PROJECTS\ECart\ECart\obj\Debug\ECart.csprojResolveAssemblyReference.cache

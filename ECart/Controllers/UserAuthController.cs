@@ -39,5 +39,9 @@ namespace ECart.Controllers
         {
             return PartialView();
         }
+        [HttpGet]
+        public ActionResult LogOut () {
+            return View();
+        }
     }
 }

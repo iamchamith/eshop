@@ -13,6 +13,7 @@ namespace Api.Ecart.Controllers
     public class UserController : BaseController
     {
         [HttpPost]
+        [AllowCrossSiteJson]
         public JsonResult Register(UserViewModel user)
         {
             Mapper.CreateMap<UserViewModel, UserBo>();
@@ -21,6 +22,7 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         [HttpPost]
+        [AllowCrossSiteJson]
         public JsonResult Authonticate(UserViewModel user) {
 
             Mapper.CreateMap<UserViewModel, UserBo>();

@@ -14,7 +14,7 @@ var Ecart;
                 var dfd = jQuery.Deferred();
                 $.ajax({
                     url: url,
-                    method: (method == webMethod.Get) ? "GET" : "POST",
+                    method: (method == Ajax.webMethod.Get) ? "GET" : "POST",
                     contentType: "application/json; charset=utf-8",
                     data: (method == webMethod.Get) ? data : JSON.stringify(data),
                     dataType: "json",
@@ -35,4 +35,3 @@ var Ecart;
         Ajax.apiConnector = apiConnector;
     })(Ajax = Ecart.Ajax || (Ecart.Ajax = {}));
 })(Ecart || (Ecart = {}));
-//# sourceMappingURL=ajax.js.map

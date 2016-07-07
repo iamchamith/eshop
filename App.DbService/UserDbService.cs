@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using App.Poco;
 using App.Bo;
 using AutoMapper;
-
 namespace App.DbService
 {
     public interface IUserDbService {
@@ -26,16 +25,17 @@ namespace App.DbService
             try
             {
                 var userInfo = (from users in dba.Users
-                                     join userdomain in dba.UserDomains on users.UserDomains.ToList().FirstOrDefault().DomainId equals userdomain.DomainId
-                                     where users.Email == user.Email && users.Password == user.Password
-                                     select new { emailConfirim = users.EmailConfirmed,name = users.Name,domainId = userdomain.DomainId,email = users.Email }).FirstOrDefault();
+                                join userdomain in dba.UserDomains on users.UserDomains.ToList().FirstOrDefault().DomainId equals userdomain.DomainId
+                                where users.Email == user.Email && users.Password == user.Password
+                                select new { emailConfirim = users.EmailConfirmed, name = users.Name, domainId = userdomain.DomainId, email = users.Email }).FirstOrDefault();
 
                 if (userInfo == null)
                 {
-                    throw new Exception("invalied login");
+                    throw new InvaliedLoginExceptions("username or password is wrong");
                 }
 
-                var x = new UserBo {
+                var x = new UserBo
+                {
                     Name = userInfo.name,
                     EmailConfirmed = userInfo.emailConfirim,
                     DomainId = userInfo.domainId,
@@ -44,9 +44,12 @@ namespace App.DbService
 
                 return ResponseMessage.Success(content: x);
             }
+            catch (InvaliedLoginExceptions ex) {
+                return ResponseMessage.Error(ex.Message);
+            }
             catch (Exception ex)
             {
-               return ResponseMessage.Error(ex, "invalied login info", responseCode: ResponseCode.ValidationError);
+                return ResponseMessage.Error(ex, "invalied login info", responseCode: ResponseCode.ServerError);
             }
         }
 

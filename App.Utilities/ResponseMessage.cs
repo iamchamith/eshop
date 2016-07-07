@@ -32,7 +32,18 @@ namespace App.Utilities
                 },
                 Message = message,
                 State = false,
-                ResponseCode = ResponseCode.Success
+                ResponseCode = responseCode
+            };
+        }
+
+        public static ActionDetails Error(string message) {
+
+            return new ActionDetails
+            {
+                Content = null,
+                Message = message,
+                State = false,
+                ResponseCode = ResponseCode.ValidationError
             };
         }
     }

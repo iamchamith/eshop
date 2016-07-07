@@ -16,7 +16,7 @@ namespace ECart
             routes.MapRoute(
               "Default", // Route name
               "{controller}/{action}/{id}", // URL with parameters
-              new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+              new { controller = "UserAuth", action = "Index", id = UrlParameter.Optional },
               new string[] { "CustomControllerFactory.Controllers" } // Namespace
           );
 
