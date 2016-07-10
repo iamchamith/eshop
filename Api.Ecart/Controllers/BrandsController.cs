@@ -12,10 +12,10 @@ namespace Api.Ecart.Controllers
 {
     public class BrandsController : BaseController
     {
-        // GET: Brands
+        [AdminAccessAttribute]
         public JsonResult ReadBrands(string id="0")
         {
-            var brandDetails = brandsService.ReadBrands("446475");
+            var brandDetails = brandsService.ReadBrands(SessionConfig.DomainId);
             Mapper.CreateMap<BrandBo, BrandViewModel>();
            
             if (brandDetails.ResponseCode == App.Utilities.ResponseCode.Success)
@@ -38,7 +38,7 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-
+        [AdminAccessAttribute]
         public JsonResult ReadBrandsById(string id)
         {
             var brandDetails = brandsService.ReadBrandsById(id);
@@ -56,9 +56,10 @@ namespace Api.Ecart.Controllers
             };
         }
         [HttpPost]
+        [AdminAccessAttribute]
         public JsonResult UpdateBrands(BrandViewModel brand)
         {
-            brand.DomainId = "446475";
+            brand.DomainId = SessionConfig.DomainId;
             Mapper.CreateMap<BrandViewModel, BrandBo>();
             return new JsonContractResult
             {
@@ -68,10 +69,11 @@ namespace Api.Ecart.Controllers
             };
         }
         [HttpPost]
+        [AdminAccessAttribute]
         public JsonResult CreateBrands(BrandViewModel brand) {
 
             brand.BrandId = Guid.NewGuid().ToString();
-            brand.DomainId = "446475";
+            brand.DomainId = SessionConfig.DomainId;
             Mapper.CreateMap<BrandViewModel, BrandBo>();
             return new JsonContractResult
             {
@@ -81,6 +83,7 @@ namespace Api.Ecart.Controllers
             };
         }
         [HttpPost]
+        [AdminAccessAttribute]
         public JsonResult DeleteBrand(string brandId)
         {
             Mapper.CreateMap<BrandViewModel, BrandBo>();
@@ -92,7 +95,7 @@ namespace Api.Ecart.Controllers
                    data = brandsService.DeleteBrand(Mapper.Map<BrandBo>(new BrandViewModel
                    {
                        BrandId = brandId,
-                       DomainId = "446475"
+                       DomainId = SessionConfig.DomainId
                    }))
                },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
@@ -101,9 +104,10 @@ namespace Api.Ecart.Controllers
         }
 
         [HttpGet]
+        [AdminAccessAttribute]
         public JsonResult Search(string query="") {
 
-            var brandDetails = brandsService.ReadBrands("446475");
+            var brandDetails = brandsService.ReadBrands(SessionConfig.DomainId);
             Mapper.CreateMap<BrandBo, BrandViewModel>();
             if (brandDetails.ResponseCode == App.Utilities.ResponseCode.Success)
             {

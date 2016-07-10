@@ -35,3 +35,4 @@ var Ecart;
         Ajax.apiConnector = apiConnector;
     })(Ajax = Ecart.Ajax || (Ecart.Ajax = {}));
 })(Ecart || (Ecart = {}));
+//# sourceMappingURL=ajax.js.map

@@ -11,5 +11,6 @@ namespace Api.Ecart.Models
         public string DomainId { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
+        public string Domain { get; set; }
     }
 }

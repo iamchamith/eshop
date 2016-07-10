@@ -15,11 +15,6 @@ namespace Api.Ecart.Controllers
             userService = new UserDbService();
             brandsService = new BrandsDbService();
         }
-
-        public ActionResult Index() {
-
-            return View();
-        }
     }
  
 }

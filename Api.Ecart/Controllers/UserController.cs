@@ -23,7 +23,7 @@ namespace Api.Ecart.Controllers
             if (response.ResponseCode == ResponseCode.Success)
             {
                 Mapper.CreateMap<UserBo, SessionModel>();
-                Session["user"] = Mapper.Map<SessionModel>((UserBo)response.Content);
+                SessionConfig.Session = Mapper.Map<SessionModel>((UserBo)response.Content);
                 auth = Enums.AuthType.NotValidateEmail;
             }
             else
@@ -49,7 +49,7 @@ namespace Api.Ecart.Controllers
             {
                 Mapper.CreateMap<UserBo, SessionModel>();
                 var repo = Mapper.Map<SessionModel>((UserBo)response.Content);
-                Session["user"] = repo;
+                SessionConfig.Session = repo;
                 auth = repo.EmailConfirmed ? Enums.AuthType.ValidateEmail : Enums.AuthType.NotValidateEmail;
             }
             return new JsonContractResult
@@ -89,7 +89,7 @@ namespace Api.Ecart.Controllers
 
             Mapper.CreateMap<UserBo, UserViewModel>();
 
-            var result = userService.ReadUserInfo("iamchamith@gmail.com");
+            var result = userService.ReadUserInfo(SessionConfig.Email);
             result.Content = Mapper.Map<UserViewModel>((UserBo)result.Content);
             return new JsonContractResult
             {
