@@ -16,5 +16,6 @@ namespace App.Bo
         public string Seo { get; set; }
         public string Image { get; set; }
         public bool? Enable { get; set; }
+        public string ImagePath { get; set; }
     }
 }

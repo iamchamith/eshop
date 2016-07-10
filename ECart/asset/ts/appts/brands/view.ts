@@ -1,35 +1,34 @@
 ﻿module Ecart.Brands.View {
     const message = new Ecart.Messages.sweetAlerts();
-    const baseApi = "http://localhost:16666";
+    const baseApi = Ecart.GlobleConfig.baseApi;
     const prefix = baseApi + "/Brands";
     const read = prefix + "/ReadBrands";
     $(function () {
 
         init.initControlles();
-        crud.read(read);
+        crud.read("0");
     });
 
     var init = {
-
         initControlles: function () {
             $('#gvBrands').kendoGrid({
                 columns: [
                     { field: "brandId", hidden: true },
+                    {
+                        title: "Brand Image",
+                        template: '<img src="#:image#" alt="#:brandName#" class="img-thumbnail entityThumbImage" />'
+                    },
                     { field: "brandName" },
                     { field: "enable" },
                     { command: [
                             {
-                                name: "view",
+                                name: "View",
                                 click: function (e) {
-                                    alert('navigated')
+                                    var tr = $(e.target).closest("tr");
+                                    var data = this.dataItem(tr);
+                                    $(location).attr('href', "/admin/Brands/Setup?" + $.param({ mode: Number(Enums.CrudType.Update), id: data.brandId }));
                                 }
                             },
-                            {
-                                name: "delete",
-                                click: function (e) {
-                                    
-                                }
-                            } // built-in "destroy" command
                         ]
                     }
                 ],
@@ -38,10 +37,10 @@
         }
     }
 
-    var crud = {
+    export var crud = {
 
-        read: function (url) {
-            new Ecart.Ajax.apiConnector().callservice(url, null, Ajax.webMethod.Get).done(
+        read: function (query) {
+            new Ecart.Ajax.apiConnector().callservice(read, { id:query}, Ajax.webMethod.Get).done(
                 function (e) {
                     console.log(e);
                     $('#gvBrands').data("kendoGrid").setDataSource(new kendo.data.DataSource({ data: e.data.content, pageSize: 10 }));

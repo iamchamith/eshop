@@ -11,7 +11,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-            @{ Html.RenderAction("_EntitySetupControlles", "EntityComman", new { type = EntityHeader.Brands});}
+            @{ Html.RenderAction("_EntitySetupControlles", "EntityComman", new { type = Enums.EntityHeader.Brands});}
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -34,7 +34,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label>Discription</label>
-                                                <textarea  rows="3" id="txtDiscription" name="txtDiscription"></textarea>
+                                                <textarea  rows="3" id="txtDiscription" name="txtDiscription" placeholder="write brand discription"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -42,17 +42,16 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label>SEO</label>
-                                                <textarea class="form-control" rows="3" id="txtSeo"></textarea>
+                                                <textarea class="form-control" rows="3" id="txtSeo" placeholder="write brand seo"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="file">
+                                    <input type="file" id="imgFile">
                                     <br />
-                                    <img class="img-rounded" src="http://betanews.com/wp-content/uploads/2022/08/Microsoft-Logo1.jpg"/>
+                                    <img class="img-rounded entitySetupImages" src="http://betanews.com/wp-content/uploads/2022/08/Microsoft-Logo1.jpg" id="imgBrands"/>
                                 </div>
-                                
                             </div>
                       
                         </form>
@@ -67,7 +66,9 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-
+<input type="hidden" id="hndFilePath" />
+<input type="hidden" id="hndBrandId" />
+<input type="hidden" id="hndCrudType" value="0"/>
 @section moduleScript{
    
 <script src="~/asset/ts/appts/brands/setup.js"></script>

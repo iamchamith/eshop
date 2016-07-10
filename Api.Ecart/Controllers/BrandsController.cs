@@ -7,28 +7,51 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using Api.Ecart.Utility;
-
+ 
 namespace Api.Ecart.Controllers
 {
     public class BrandsController : BaseController
     {
         // GET: Brands
-        public JsonResult ReadBrands()
+        public JsonResult ReadBrands(string id="0")
         {
+            var brandDetails = brandsService.ReadBrands("446475");
+            Mapper.CreateMap<BrandBo, BrandViewModel>();
+           
+            if (brandDetails.ResponseCode == App.Utilities.ResponseCode.Success)
+            {
+                var list = (List<BrandBo>)brandDetails.Content;
+                if (id != null && id != "0")
+                {
+                    list.Where(p => p.BrandId == id);
+                }
+                List<BrandViewModel> brands = list.Select(x => AutoMapper.Mapper.Map<BrandViewModel>(x)).ToList();
+                foreach (var item in brands)
+                {
+                    item.Image = $"{GlobleConfig.baseUrlFiles}/{Enums.FileType.Brands.ToString()}/thumb/" + ((item.Image == null) ? "no.jpg" : item.Image);
+                }
+                brandDetails.Content = brands;
+            }
             return new JsonContractResult
             {
-                Data =
-                new { data = brandsService.ReadBrands("446475") },
+                Data = new { data = brandDetails },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
 
-        public JsonResult ReadBrandsById(string brandId)
+        public JsonResult ReadBrandsById(string id)
         {
+            var brandDetails = brandsService.ReadBrandsById(id);
+            Mapper.CreateMap<BrandBo, BrandViewModel>();
+            if (brandDetails.ResponseCode == App.Utilities.ResponseCode.Success)
+            {
+                var brands = Mapper.Map<BrandViewModel>((BrandBo)brandDetails.Content);
+                brands.ImagePath = $"{GlobleConfig.baseUrlFiles}/{Enums.FileType.Brands.ToString()}/" + ((brands.Image == null) ? "no.jpg" : brands.Image);
+                brandDetails.Content = brands;
+            }
             return new JsonContractResult
             {
-                Data =
-                new { data = brandsService.ReadBrandsById(brandId) },
+                Data = new { data = brandDetails },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -75,6 +98,40 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
 
+        }
+
+        [HttpGet]
+        public JsonResult Search(string query="") {
+
+            var brandDetails = brandsService.ReadBrands("446475");
+            Mapper.CreateMap<BrandBo, BrandViewModel>();
+            if (brandDetails.ResponseCode == App.Utilities.ResponseCode.Success)
+            {
+                var list = (List<BrandBo>)brandDetails.Content;
+                list = list.Where(p=>p.BrandName.StartsWith(query)).ToList();
+                List<BrandViewModel> brands = list.Select(x => AutoMapper.Mapper.Map<BrandViewModel>(x)).ToList();
+
+                var listF = new List<KeyValueViewModel>();
+                listF.Add(new KeyValueViewModel
+                {
+                    Text = "All",
+                    Value = "0"
+                });
+                foreach (var item in brands)
+                {
+                    listF.Add(new KeyValueViewModel {
+                         Text = item.BrandName,
+                         Value = item.BrandId
+                    });
+                }
+
+                brandDetails.Content = listF;
+            }
+            return new JsonContractResult
+            {
+                Data = new { data = brandDetails },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
         }
 
     }

@@ -5,7 +5,7 @@
 }
 
 <br />
- @{Html.RenderAction("_EntityTop", "EntityComman",new { type = EntityHeader.Brands }); }
+ @{Html.RenderAction("_EntityTop", "EntityComman",new { type = Enums.EntityHeader.Brands, crud= Enums.Crud.Insert }); }
 
 
 <div id="gvBrands"></div>
@@ -13,4 +13,6 @@
 @section moduleScript{
 
 <script src="~/asset/ts/appts/brands/view.js"></script>
+
+<script src="~/asset/ts/appts/entityComman/searchEntity.js"></script>
 }

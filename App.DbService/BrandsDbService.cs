@@ -25,6 +25,7 @@ namespace App.DbService
         {
             try
             {
+                if (brand.Image == null) { brand.Image = "no.jpg"; }
                 Mapper.CreateMap<BrandBo, Brand>();
                 dba.Brands.Add(Mapper.Map<Brand>(brand));
                 dba.SaveChanges();
@@ -59,9 +60,29 @@ namespace App.DbService
         {
             try
             {
-                var brandList = dba.Brands.Where(p => p.DomainId == DomainId).ToList();
+                var brandList = from a in dba.Brands
+                                where a.DomainId == DomainId
+                                select new
+                                {
+                                    BrandId = a.BrandId,
+                                    BrandName = a.BrandName,
+                                    Enable = a.Enable,
+                                    Image = a.Image
+                                };
+
+                var list = new List<BrandBo>();
+                foreach (var item in brandList)
+                {
+                    list.Add(new BrandBo {
+                         BrandId = item.BrandId,
+                         BrandName = item.BrandName,
+                         Enable = item.Enable,
+                         Image = item.Image,
+                       
+                    });
+                }
                 Mapper.CreateMap<Brand, BrandBo>();
-                return ResponseMessage.Success(content: brandList.Select(x => AutoMapper.Mapper.Map<BrandBo>(x)).ToList());
+                return ResponseMessage.Success(content: list);
             }
             catch (Exception ex)
             {

@@ -7,7 +7,7 @@ using App.DbService;
 namespace Api.Ecart.Controllers
 {
     public class BaseController : Controller
-    {
+    { 
         protected IUserDbService userService = null;
         protected IBrandsDbService brandsService = null;
         public BaseController()

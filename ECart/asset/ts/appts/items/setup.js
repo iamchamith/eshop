@@ -4,7 +4,13 @@ var Ecart;
     (function (Brands) {
         var View;
         (function (View) {
+            var baseApi = "http://localhost:16666";
             $(function () {
+                var browserUrl = window.location.href;
+                var mode = new Ecart.Utility.url().getParameterByName("mode", browserUrl);
+                if (Number(mode) == Number(Ecart.Enums.EntityType.Brands)) {
+                    var url = baseApi + "/Brands/search";
+                }
                 init.initControlles();
             });
             var init = {
@@ -22,3 +28,4 @@ var Ecart;
         })(View = Brands.View || (Brands.View = {}));
     })(Brands = Ecart.Brands || (Ecart.Brands = {}));
 })(Ecart || (Ecart = {}));
+//# sourceMappingURL=setup.js.map

@@ -3,20 +3,17 @@
     <div class="col-lg-4">
         <h4>@Model.HeaderCaption</h4>
     </div>
-        <div class="col-lg-4" style="text-align:right">
-            <div class="input-group custom-search-form">
-                <input type="text" class="form-control" placeholder="Search...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </span>
-            </div>
-        </div>
-
-        <div class="col-lg-4" style="text-align:left">
+ 
+        <div class="col-lg-8" style="text-align:left">
+            <input placeholder="Search..." id="ddSearch">
             <a href="@Model.CustomizedUrl" class="btn btn-primary">customized</a>
             <a href="@Model.SetupUrl" class="btn btn-primary">Create new</a>
          
         </div>
 </div>
+<br />
+@section moduleScript{
+
+    <script src="~/asset/ts/appts/brands/setup.js"></script>
+}
+ 

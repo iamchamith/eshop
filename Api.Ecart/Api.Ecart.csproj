@@ -199,6 +199,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UtilitiesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -206,6 +207,8 @@
     <Compile Include="Models\CategoriesSortViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\KeyValueViewModel.cs" />
+    <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\ProductsImageViewModel.cs" />
     <Compile Include="Models\ProductsSortViewModel.cs" />
@@ -217,11 +220,14 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Utility\AllowCrossSiteJson.cs" />
     <Compile Include="Utility\GlobleConfig.cs" />
+    <Compile Include="Utility\ImageProcess.cs" />
     <Compile Include="Utility\JsonContractResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Files\Brands\no.jpg" />
+    <Content Include="Files\Brands\thumb\no.jpg" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -235,7 +241,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Files\Categories\" />
+    <Folder Include="Files\Products\" />
     <Folder Include="Views\Brands\" />
+    <Folder Include="Views\Utilities\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

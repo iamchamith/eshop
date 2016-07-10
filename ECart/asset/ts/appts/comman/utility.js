@@ -2,18 +2,23 @@ var Ecart;
 (function (Ecart) {
     var Utility;
     (function (Utility) {
-        Utility.qs = (function (a) {
-            if (a == "")
-                return {};
-            var b = {};
-            for (var i = 0; i < a.length; ++i) {
-                var p = a[i].split('=', 2);
-                if (p.length == 1)
-                    b[p[0]] = "";
-                else
-                    b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+        var url = (function () {
+            function url() {
             }
-            return b;
-        })(window.location.search.substr(1).split('&'));
+            url.prototype.getParameterByName = function (name, url) {
+                if (!url)
+                    url = window.location.href;
+                name = name.replace(/[\[\]]/g, "\\$&");
+                var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"), results = regex.exec(url);
+                if (!results)
+                    return null;
+                if (!results[2])
+                    return '';
+                return decodeURIComponent(results[2].replace(/\+/g, " "));
+            };
+            return url;
+        }());
+        Utility.url = url;
     })(Utility = Ecart.Utility || (Ecart.Utility = {}));
 })(Ecart || (Ecart = {}));
+//# sourceMappingURL=utility.js.map

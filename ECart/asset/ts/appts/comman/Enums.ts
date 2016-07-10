@@ -6,4 +6,17 @@
         Warning = 3,
         Info = 4
     }
+
+    export enum CrudType {
+        Insert = 0,
+        Update = 1,
+        Delete = 3, 
+        Select = 4
+    }
+
+    export enum EntityType {
+        Categories = 0,
+        Brands = 1,
+        Items = 2
+    }
 }

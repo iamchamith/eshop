@@ -7,4 +7,3 @@ G:\STUDENT PROJECTS\ECart\App.Poco\bin\Debug\EntityFramework.xml
 G:\STUDENT PROJECTS\ECart\App.Poco\bin\Debug\EntityFramework.SqlServer.xml
 G:\STUDENT PROJECTS\ECart\App.Poco\obj\Debug\App.Poco.dll
 G:\STUDENT PROJECTS\ECart\App.Poco\obj\Debug\App.Poco.pdb
-G:\STUDENT PROJECTS\ECart\App.Poco\obj\Debug\App.Poco.csprojResolveAssemblyReference.cache

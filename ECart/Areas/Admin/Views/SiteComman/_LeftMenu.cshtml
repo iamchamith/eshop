@@ -8,13 +8,13 @@
         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Entity<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
             <li>
-                <a href="/admin/@EntityHeader.Brands.ToString().ToLower()">Brands</a>
+                <a href="/admin/@Enums.EntityHeader.Brands.ToString().ToLower()?mode=@((int)Enums.EntityHeader.Brands)">Brands</a>
             </li>
             <li>
-                <a href="/admin/@EntityHeader.Categories.ToString().ToLower()">Categories</a>
+                <a href="/admin/@Enums.EntityHeader.Categories.ToString().ToLower()?mode=@((int)Enums.EntityHeader.Categories)">Categories</a>
             </li>
             <li>
-                <a href="/admin/@EntityHeader.Items.ToString().ToLower()">Products</a>
+                <a href="/admin/@Enums.EntityHeader.Items.ToString().ToLower()?mode=@((int)Enums.EntityHeader.Items)">Products</a>
             </li>
         </ul>
         <!-- /.nav-second-level -->

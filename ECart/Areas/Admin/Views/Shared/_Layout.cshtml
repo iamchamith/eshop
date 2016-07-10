@@ -34,8 +34,7 @@
     <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.2.607/styles/kendo.common-material.min.css" />
     <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.2.607/styles/kendo.material.min.css" />
     <link rel="stylesheet" href="//kendo.cdn.telerik.com/2016.2.607/styles/kendo.default.mobile.min.css" />
-
- 
+     <link href="~/asset/css/adminStyle.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -120,11 +119,14 @@
     <script src="~/asset/dist/js/sweetalert.min.js"></script>
     <script src="~/asset/dist/js/sweetalert-dev.js"></script>
 
+    <script src="~/asset/ts/appts/comman/globleConfig.js"></script>
     <script src="~/asset/ts/appts/comman/messages.js"></script>
     <script src="~/asset/ts/appts/comman/Enums.js"></script>
     <script src="~/asset/ts/appts/comman/ajax.js"></script>
-
-    @RenderSection("moduleScript", required: false)
+    <script src="~/asset/js/option-plugin.js"></script>
+    <script src="~/asset/ts/appts/comman/utility.js"></script>
+     @RenderSection("moduleScript", required: false)
+      
 
 </body>
 

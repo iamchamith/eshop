@@ -5,9 +5,20 @@ using System.Web;
 
 namespace ECart.Areas.Admin.Models
 {
-    public enum EntityHeader {
-        Categories = 0,
-        Brands = 1,
-        Items = 2
+    public class Enums
+    {
+        public enum EntityHeader
+        {
+            Categories = 0,
+            Brands = 1,
+            Items = 2
+        }
+        public enum Crud
+        {
+            Insert = 0,
+            Update = 1,
+            Delete = 2,
+            Select = 3
+        }
     }
 }

@@ -37,15 +37,15 @@ var Ecart;
         var view = {
             login: function () {
                 $('#lblTitile').val('Please Sign In');
-                $("#template_content").html($("#template_login").html());
+                $("#template_content").html(kendo.template($("#template_login").html()));
             },
             register: function () {
                 $('#lblTitile').val('Sign Up free');
-                $("#template_content").html($("#template_register").html());
+                $("#template_content").html(kendo.template($("#template_register").html()));
             },
             forgetPassword: function () {
                 $('#lblTitile').val('Forget password');
-                $("#template_content").html($("#template_forgetPasswordRequest").html());
+                $("#template_content").html(kendo.template($("#template_forgetPasswordRequest").html()));
             },
             checkToken: function () {
             },
@@ -80,3 +80,4 @@ var Ecart;
         };
     })(Auth = Ecart.Auth || (Ecart.Auth = {}));
 })(Ecart || (Ecart = {}));
+//# sourceMappingURL=userAuthontication.js.map

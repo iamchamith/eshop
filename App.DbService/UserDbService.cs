@@ -80,7 +80,17 @@ namespace App.DbService
         {
             try
             {
-                var result = dba.Users.Where(p=>p.Email == email).First();
+                var list = (from a in dba.Users
+                              where a.Email == email
+                              select new { Email = a.Email, Name = a.Name, CreatedDate = a.CreatedDate }).ToList();
+ 
+                var  result= list.Select(x => new UserBo
+                {
+                    CreatedDate = x.CreatedDate,
+                    Name = x.Name,
+                    Email = x.Email
+                }).First();
+
                 return ResponseMessage.Success(content: result);
             }
             catch (Exception ex)

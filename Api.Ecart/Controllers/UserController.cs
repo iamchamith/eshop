@@ -61,5 +61,24 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+        //User/GetUserInfo
+        [HttpGet]
+        public JsonResult GetUserInfo() {
+
+            Mapper.CreateMap<UserBo, UserViewModel>();
+            return new JsonContractResult
+            {
+                Data =
+                new
+                {
+                    data = new
+                    {
+                        user = Mapper.Map<UserViewModel>((UserBo)userService.ReadUserInfo("iamchamith@gmail.com").Content),
+                        domain = "google.com"
+                    }
+                },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
     }
 }

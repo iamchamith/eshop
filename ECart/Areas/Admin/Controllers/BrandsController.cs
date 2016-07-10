@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECart.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,15 +9,20 @@ namespace ECart.Areas.Admin.Controllers
 {
     public class BrandsController : Controller
     {
-        // GET: Brands
+        [HttpGet]
+        //[CompressContent]
         public ActionResult Index()
         {
             return View();
         }
+        [HttpGet]
+        //[CompressContent]
         public ActionResult Setup()
         {
             return View();
         }
+        [HttpGet]
+        //[CompressContent]
         public ActionResult Customized() {
             return View();
         }
