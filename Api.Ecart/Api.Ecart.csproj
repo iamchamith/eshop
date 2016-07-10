@@ -198,6 +198,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BrandsController.cs" />
+    <Compile Include="Controllers\SiteSettingsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UtilitiesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -244,6 +245,7 @@
     <Folder Include="Files\Categories\" />
     <Folder Include="Files\Products\" />
     <Folder Include="Views\Brands\" />
+    <Folder Include="Views\SiteSettings\" />
     <Folder Include="Views\Utilities\" />
   </ItemGroup>
   <ItemGroup>

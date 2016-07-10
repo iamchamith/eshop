@@ -5,27 +5,14 @@ var Ecart;
     (function (Auth) {
         var baseApi = $('#hndBaseUrl').val();
         var login = baseApi + "/User/Authonticate";
-        var register = baseApi + "";
+        var register = baseApi + "/User/Register";
         var emailValidation = baseApi + "";
         var changePassword = baseApi + "";
         var UpdateUser = baseApi;
         var Home = "/Admin/Dashboard";
         $(function () {
-            view.login();
-            $('#btnLinkRegister').click(function () {
-                view.register();
-            });
-            $('.linkToLogin').click(function () {
-                view.login();
-            });
-            $('.linkToLogin').click(function () {
-                view.login();
-            });
-            $('#btnLinkForgetPassword').click(function () {
-                view.forgetPassword();
-            });
             $('#btnRegister').on('click', function () {
-                alert();
+                auth.register();
             });
             $('#btnLogin').on('click', function () {
                 auth.login(login, {
@@ -34,45 +21,42 @@ var Ecart;
                 });
             });
         });
-        var view = {
-            login: function () {
-                $('#lblTitile').val('Please Sign In');
-                $("#template_content").html(kendo.template($("#template_login").html()));
-            },
-            register: function () {
-                $('#lblTitile').val('Sign Up free');
-                $("#template_content").html(kendo.template($("#template_register").html()));
-            },
-            forgetPassword: function () {
-                $('#lblTitile').val('Forget password');
-                $("#template_content").html(kendo.template($("#template_forgetPasswordRequest").html()));
-            },
-            checkToken: function () {
-            },
-            newPassword: function () {
-            }
-        };
         var auth = {
-            register: function (url, data) {
-                new Ecart.Ajax.apiConnector().callservice(url, data, Ecart.Ajax.webMethod.Post).done(function (e) {
+            register: function () {
+                new Ecart.Ajax.apiConnector().callservice(register, {
+                    Email: $('#txtEmail').val(),
+                    Password: $('#txtPassword').val(),
+                    ConfirmNewPassword: $('#txtConfrimPassword').val(),
+                    Domain: $('#txtDomain').val(),
+                    Name: $('#txtDiaplayName').val()
+                }, Ecart.Ajax.webMethod.Post).done(function (e) {
+                    console.log(e);
+                    if (Number(e.data) == Number(Ecart.Enums.AuthType.NotValidateEmail)) {
+                        $(location).attr("href", '/UserAuth/Verification');
+                    }
+                    else {
+                        new Ecart.Messages.sweetAlerts().errorAlert();
+                    }
                 });
             },
             login: function (url, data) {
                 new Ecart.Ajax.apiConnector().callservice(url, data, Ecart.Ajax.webMethod.Post).done(function (e) {
-                    console.error(e);
-                    if (e.data.responseCode == Ecart.Enums.ResponseCode.Success) {
-                        $(location).attr('href', Home);
+                    if (Number(e.data) == Number(Ecart.Enums.AuthType.NotValidateEmail)) {
+                        $(location).attr("href", '/UserAuth/Verification');
                     }
-                    else if (e.data.responseCode == Ecart.Enums.ResponseCode.ValidationError) {
-                        alert('invalied username or password');
+                    else if (Number(e.data) == Number(Ecart.Enums.AuthType.ValidateEmail)) {
+                        $(location).attr("href", Home);
                     }
+                    else if (Number(e.data) == Number(Ecart.Enums.AuthType.ValidationError))
+                        new Ecart.Messages.sweetAlerts().errorAlert("invalied username or password");
                     else {
+                        new Ecart.Messages.sweetAlerts().errorAlert();
                         console.error(e);
                     }
                 });
             },
             emailValidate: function () {
-            }
+            },
         };
         var changeSettions = {
             updateUser: function () { },
@@ -80,4 +64,3 @@ var Ecart;
         };
     })(Auth = Ecart.Auth || (Ecart.Auth = {}));
 })(Ecart || (Ecart = {}));
-//# sourceMappingURL=userAuthontication.js.map

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECart.Areas.Admin.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -41,6 +42,12 @@ namespace ECart.Controllers
         }
         [HttpGet]
         public ActionResult LogOut () {
+            return View();
+        }
+        //UserAuth/Verification
+        [HttpGet]
+        public ActionResult Verification(Enums.Verification val) {
+            ViewBag.validate = val;
             return View();
         }
     }

@@ -7,6 +7,6 @@ namespace Api.Ecart.Models
 {
     public class ChangePasswordViewModel : UserViewModel
     {
-        public string NewPassword { get; set; }
+       
     }
 }

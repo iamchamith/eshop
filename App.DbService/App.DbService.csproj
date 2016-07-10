@@ -60,6 +60,7 @@
     <Compile Include="ProductsDbService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserDbService.cs" />
+    <Compile Include="Util\Enums.cs" />
     <Compile Include="WebSiteDbService.cs" />
   </ItemGroup>
   <ItemGroup>

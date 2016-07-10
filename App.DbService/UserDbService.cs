@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using App.Poco;
 using App.Bo;
 using AutoMapper;
+using App.DbService.Util;
+
 namespace App.DbService
 {
     public interface IUserDbService {
@@ -15,6 +17,7 @@ namespace App.DbService
         ActionDetails RegisterUser(UserBo user);
         ActionDetails ChangePassword(UserChangePasswordBo user);
         ActionDetails ReadUserInfo(string email);
+        ActionDetails TokenValidate(Enums.TokenType type,string token,string email);
     }
 
 
@@ -27,7 +30,7 @@ namespace App.DbService
                 var userInfo = (from users in dba.Users
                                 join userdomain in dba.UserDomains on users.UserDomains.ToList().FirstOrDefault().DomainId equals userdomain.DomainId
                                 where users.Email == user.Email && users.Password == user.Password
-                                select new { emailConfirim = users.EmailConfirmed, name = users.Name, domainId = userdomain.DomainId, email = users.Email }).FirstOrDefault();
+                                select new { emailConfirim = users.EmailConfirmed, name = users.Name, domainId = userdomain.DomainId, email = users.Email,enable=userdomain.Enable }).FirstOrDefault();
 
                 if (userInfo == null)
                 {
@@ -103,7 +106,14 @@ namespace App.DbService
         {
             try
             {
+                //validate domain...
+                if ((bool)new WebSiteDbService().CheckDomainAvaiable(user.Domain, user.Email).Content == false) {
+
+                    return ResponseMessage.Error("domain already there");
+                }
+
                 string domainId = Guid.NewGuid().ToString();
+                string activateToken = Guid.NewGuid().ToString();
                 dba.Users.Add(new User
                 {
                     CreatedDate = DateTime.Now,
@@ -111,17 +121,27 @@ namespace App.DbService
                     EmailConfirmed = false,
                     Name = user.Name,
                     Password = user.Password,
-                    Token = user.Token
+                    Token = activateToken,
+                    TokenType = (int)Enums.TokenType.Email
+
                 });
                 dba.UserDomains.Add(new Poco.UserDomain
                 {
                     UserId = user.Email,
                     DomainId = domainId,
                     Domain = user.Domain,
-                    Enable = false
+                    Enable = false,
+                    CreatedDate = DateTime.Today
                 });
                 dba.SaveChanges();
-                return ResponseMessage.Success(content: domainId);
+                var x = new UserBo
+                {
+                    Name = user.Name,
+                    EmailConfirmed = false,
+                    DomainId = domainId,
+                    Email = user.Email
+                };
+                return ResponseMessage.Success(content: x);
 
             }
             catch (Exception ex)
@@ -145,7 +165,12 @@ namespace App.DbService
                 var userInfo = (from users in dba.Users
                                 join userdomain in dba.UserDomains on users.UserDomains.ToList().FirstOrDefault().DomainId equals userdomain.DomainId
                                 where users.Email == response.Email 
-                                select new { emailConfirim = users.EmailConfirmed, name = users.Name, domainId = userdomain.DomainId, email = users.Email }).FirstOrDefault();
+                                select new { emailConfirim = users.EmailConfirmed,
+                                    name = users.Name,
+                                    domainId = userdomain.DomainId,
+                                    email = users.Email,
+                                    enable = userdomain.Enable 
+                                }).FirstOrDefault();
 
 
                 if (userInfo == null)
@@ -167,6 +192,29 @@ namespace App.DbService
                 return ResponseMessage.Error(ex, "invalied token", responseCode: ResponseCode.ValidationError);
             }
         }
- 
+
+        public ActionDetails TokenValidate(Enums.TokenType type, string token,string email)
+        {
+            try
+            {
+                var res = dba.Users.Where(p => p.TokenType == (int)type && p.Email == email && p.Token == token).FirstOrDefault();
+                if (res == null)
+                {
+                    return ResponseMessage.Error("invalied token");
+                }
+                else {
+                    if (type == Enums.TokenType.Email)
+                    {
+                        res.EmailConfirmed = true;
+                        dba.SaveChanges();
+                    }
+                }
+                return ResponseMessage.Success();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage.Error(ex, "invalied token", responseCode: ResponseCode.ValidationError);
+            }
+        }
     }
 }

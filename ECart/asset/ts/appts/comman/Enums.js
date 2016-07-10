@@ -23,6 +23,13 @@ var Ecart;
             EntityType[EntityType["Items"] = 2] = "Items";
         })(Enums.EntityType || (Enums.EntityType = {}));
         var EntityType = Enums.EntityType;
+        (function (AuthType) {
+            AuthType[AuthType["Anonymas"] = 0] = "Anonymas";
+            AuthType[AuthType["NotValidateEmail"] = 1] = "NotValidateEmail";
+            AuthType[AuthType["ValidateEmail"] = 2] = "ValidateEmail";
+            AuthType[AuthType["ValidationError"] = 3] = "ValidationError";
+            AuthType[AuthType["ServerError"] = 4] = "ServerError";
+        })(Enums.AuthType || (Enums.AuthType = {}));
+        var AuthType = Enums.AuthType;
     })(Enums = Ecart.Enums || (Ecart.Enums = {}));
 })(Ecart || (Ecart = {}));
-//# sourceMappingURL=Enums.js.map

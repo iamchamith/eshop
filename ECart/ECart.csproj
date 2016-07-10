@@ -1085,6 +1085,7 @@
     <Content Include="Areas\Admin\Views\EntityComman\_EntityTop.cshtml" />
     <Content Include="Areas\Admin\Views\Brands\Setup.cshtml" />
     <Content Include="Areas\Admin\Views\EntityComman\_EntitySetupControlles.cshtml" />
+    <Content Include="Views\UserAuth\Verification.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1110,6 +1111,7 @@
     <TypeScriptCompile Include="asset\ts\appts\comman\files.ts" />
     <TypeScriptCompile Include="asset\ts\appts\comman\globleConfig.ts" />
     <TypeScriptCompile Include="asset\ts\appts\comman\messages.ts" />
+    <TypeScriptCompile Include="asset\ts\appts\comman\userManegement.ts" />
     <TypeScriptCompile Include="asset\ts\appts\comman\utility.ts" />
     <TypeScriptCompile Include="asset\ts\appts\entityComman\searchEntity.ts" />
     <TypeScriptCompile Include="asset\ts\appts\items\customized.ts" />

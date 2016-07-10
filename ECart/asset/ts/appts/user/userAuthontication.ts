@@ -3,86 +3,66 @@ module Ecart.Auth {
 
     const baseApi = $('#hndBaseUrl').val();
     const login = baseApi + "/User/Authonticate";
-    const register = baseApi + "";
+    const register = baseApi + "/User/Register";
     const emailValidation = baseApi + "";
     const changePassword = baseApi + "";
     const UpdateUser = baseApi;
     const Home = "/Admin/Dashboard"
+
     $(function () {
-
-        view.login();
-
-        $('#btnLinkRegister').click(function () {
-            view.register();
-        });
-        $('.linkToLogin').click(function () {
-            view.login();
-        });
-        $('.linkToLogin').click(function () {
-            view.login();
-        });
-        $('#btnLinkForgetPassword').click(function () {
-            view.forgetPassword();
-        });
-
+  
         $('#btnRegister').on('click', function () {
-            alert();
+            auth.register();
         });
+
         $('#btnLogin').on('click', function () {
             auth.login(login, {
                 Email: $('#txtLoginEmail').val(),
                 Password: $('#txtLogginPassword').val()
             });
         });
-
+       
     });
-
-    var view = {
-        login: function () {
-            $('#lblTitile').val('Please Sign In');
-            $("#template_content").html(kendo.template($("#template_login").html()));
-        },
-        register: function () {
-            $('#lblTitile').val('Sign Up free');
-            $("#template_content").html(kendo.template($("#template_register").html()));
-        },
-        forgetPassword: function () {
-            $('#lblTitile').val('Forget password');
-            $("#template_content").html(kendo.template($("#template_forgetPasswordRequest").html()));
-        },
-        checkToken: function () {
-
-        },
-        newPassword: function () {
-
-        }
-    }
-
+ 
     var auth = {
 
-        register: function (url, data) {
+        register: function () {
 
-            new Ecart.Ajax.apiConnector().callservice(url, data, Ajax.webMethod.Post).done(function (e) {
-
-
+            new Ecart.Ajax.apiConnector().callservice(register, {
+                Email: $('#txtEmail').val(),
+                Password: $('#txtPassword').val(),
+                ConfirmNewPassword: $('#txtConfrimPassword').val(),
+                Domain: $('#txtDomain').val(),
+                Name: $('#txtDiaplayName').val()
+            }, Ajax.webMethod.Post).done(function (e) {
+                console.log(e);
+                if (Number(e.data) == Number(Enums.AuthType.NotValidateEmail)) {
+                    $(location).attr("href", '/UserAuth/Verification');
+                } else {
+                    new Ecart.Messages.sweetAlerts().errorAlert();
+                }
             });
         },
         login: function (url: string, data: any): any {
             new Ecart.Ajax.apiConnector().callservice(url, data, Ajax.webMethod.Post).done(function (e) {
-
-                console.error(e);
-                if (e.data.responseCode == Ecart.Enums.ResponseCode.Success) {
-                    $(location).attr('href', Home);
-                } else if (e.data.responseCode == Ecart.Enums.ResponseCode.ValidationError) {
-                    alert('invalied username or password');
-                } else {
+                 
+                if (Number(e.data) == Number(Enums.AuthType.NotValidateEmail)) {
+                    $(location).attr("href", '/UserAuth/Verification');
+                } else if (Number(e.data) == Number(Enums.AuthType.ValidateEmail)) {
+                    $(location).attr("href", Home);
+                } else if (Number(e.data) == Number(Enums.AuthType.ValidationError))
+                    new Ecart.Messages.sweetAlerts().errorAlert("invalied username or password");
+                else {
+                    new Ecart.Messages.sweetAlerts().errorAlert();
                     console.error(e);
                 }
             });
         },
+
         emailValidate: function () {
 
-        }
+        },
+        
     };
 
     var changeSettions = {

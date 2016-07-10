@@ -20,5 +20,10 @@ namespace ECart.Areas.Admin.Models
             Delete = 2,
             Select = 3
         }
+
+        public enum Verification {
+            Email = 0,
+            ForgetPassword = 1
+        }
     }
 }

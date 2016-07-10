@@ -19,4 +19,12 @@
         Brands = 1,
         Items = 2
     }
+
+    export enum AuthType {
+        Anonymas = 0,
+        NotValidateEmail = 1,
+        ValidateEmail = 2,
+        ValidationError = 3,
+        ServerError = 4
+    }
 }

@@ -16,5 +16,6 @@ namespace Api.Ecart.Models
         public DateTime? CreatedDate { get; set; }
         public bool? EmailConfirmed { get; set; }
         public string Token { get; set; }
+        public string Domain { get; set; }
     }
 }
