@@ -28,6 +28,8 @@
     <!-- Custom Fonts -->
     <link href="../asset/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+
+    <link href="~/asset/dist/css/sweetalert.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -42,7 +44,8 @@
     <div class="container">
       @RenderBody()
     </div>
-     
+    <input type="hidden" id="hndBaseUrl" value="@ECart.Utilities.Paths.ApiBase" />
+
     <!-- jQuery -->
     <script src="//kendo.cdn.telerik.com/2016.2.607/js/jquery.min.js"></script>
 
@@ -55,7 +58,15 @@
     <script src="//kendo.cdn.telerik.com/2016.2.607/js/kendo.all.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="../asset/dist/js/sb-admin-2.js"></script>
-     
+
+    <script src="~/asset/dist/js/sweetalert.min.js"></script>
+    <script src="~/asset/dist/js/sweetalert-dev.js"></script>
+    <script src="~/asset/ts/appts/comman/messages.js"></script>
+    <script src="~/asset/ts/appts/comman/utility.js"></script>
+    <script src="~/asset/ts/appts/comman/config.js"></script>
+    <script src="~/asset/ts/appts/comman/animation.js"></script>
+    <script src="~/asset/ts/appts/comman/Enums.js"></script>
+    <script src="~/asset/ts/appts/comman/ajax.js"></script>
     @RenderSection("moduleScript", required: false)
 </body>
 

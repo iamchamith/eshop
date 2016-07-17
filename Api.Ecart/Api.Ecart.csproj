@@ -48,6 +48,10 @@
       <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.0.1011, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -210,6 +214,7 @@
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\KeyValueViewModel.cs" />
     <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\ModelValidation\UserAuth\RegistrationValidation.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\ProductsImageViewModel.cs" />
     <Compile Include="Models\ProductsSortViewModel.cs" />
@@ -221,6 +226,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Utility\AdminAccessAttribute.cs" />
     <Compile Include="Utility\AllowCrossSiteJson.cs" />
+    <Compile Include="Utility\Comman.cs" />
     <Compile Include="Utility\GlobleConfig.cs" />
     <Compile Include="Utility\ImageProcess.cs" />
     <Compile Include="Utility\JsonContractResult.cs" />
@@ -255,7 +261,8 @@
     <None Include="Project_Readme.html" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Base\Index.cshtml" />
+    <Content Include="Views\Base\ApiDoc.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\App.Bo\App.Bo.csproj">

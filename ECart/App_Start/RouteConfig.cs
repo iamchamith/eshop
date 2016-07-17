@@ -12,20 +12,13 @@ namespace ECart
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
             routes.MapRoute(
-              "Default", // Route name
-              "{controller}/{action}/{id}", // URL with parameters
-              new { controller = "UserAuth", action = "Index", id = UrlParameter.Optional },
-              new string[] { "CustomControllerFactory.Controllers" } // Namespace
-          );
+                           name: "Default",
+                           url: "{controller}/{action}/{id}",
+                           defaults: new { controller = "UserAuth", action = "Index", id = UrlParameter.Optional }
+                       );
 
-            routes.MapRoute(
-                   "Api",
-                   "Api/{controller}/{action}/{id}",
-                    new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                    new string[] { "ECart.Api" } // Namespace
-              );
+           
         }
     }
 }

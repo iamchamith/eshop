@@ -8,15 +8,37 @@ using System.Web.Mvc;
 using AutoMapper;
 using Api.Ecart.Utility;
 using App.Utilities;
+using Api.Ecart.Models.ModelValidation.UserAuth;
 
 namespace Api.Ecart.Controllers
 {
     public class UserController : BaseController
     {
+
+        [HttpGet]
+        public ActionResult Index (){ return View(); }
+
         [HttpPost]
         [AllowCrossSiteJson]
         public JsonResult Register(UserViewModel user)
         {
+            var res = new ActionDetails();
+            var results = new RegistrationValidation().Validate(user);
+            if (!results.IsValid)
+            {
+                return new JsonContractResult
+                {
+                    Data = new ActionDetails
+                    {
+                        ResponseCode = ResponseCode.ValidationError,
+                        Content = Comman.FluantErrorList(results.Errors),
+                        Message = "registration is not success",
+                        State = false
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+
             Mapper.CreateMap<UserViewModel, UserBo>();
             var response = userService.RegisterUser(Mapper.Map<UserBo>(user));
             Enums.AuthType auth = Enums.AuthType.Anonymas;
@@ -24,16 +46,27 @@ namespace Api.Ecart.Controllers
             {
                 Mapper.CreateMap<UserBo, SessionModel>();
                 SessionConfig.Session = Mapper.Map<SessionModel>((UserBo)response.Content);
-                auth = Enums.AuthType.NotValidateEmail;
+                res = new ActionDetails
+                {
+                    ResponseCode = ResponseCode.Success,
+                    Content = SessionConfig.Session,
+                    Message = "registration is success",
+                    State = true
+                };
             }
             else
             {
-                auth = Enums.AuthType.ValidationError;
+                res = new ActionDetails
+                {
+                    ResponseCode = response.ResponseCode,
+                    Content = new List<string> { "user deferent domain" },
+                    Message = "registration is not success",
+                    State = false
+                };
             }
             return new JsonContractResult
             {
-                Data =
-                new { data = (int)auth },
+                Data = res ,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -41,7 +74,7 @@ namespace Api.Ecart.Controllers
         [AllowCrossSiteJson]
         public JsonResult Authonticate(UserViewModel user)
         {
-
+            var res = new ActionDetails();
             Mapper.CreateMap<UserViewModel, UserBo>();
             var response = userService.Authenticate(Mapper.Map<UserBo>(user));
             Enums.AuthType auth = Enums.AuthType.Anonymas;
@@ -51,10 +84,25 @@ namespace Api.Ecart.Controllers
                 var repo = Mapper.Map<SessionModel>((UserBo)response.Content);
                 SessionConfig.Session = repo;
                 auth = repo.EmailConfirmed ? Enums.AuthType.ValidateEmail : Enums.AuthType.NotValidateEmail;
+                res = new ActionDetails
+                {
+                    ResponseCode = ResponseCode.Success,
+                    Content = SessionConfig.Session,
+                    Message = "login is success",
+                    State = true
+                };
+            }
+            else {
+                res = new ActionDetails
+                {
+                    ResponseCode = ResponseCode.ValidationError,
+                    Message = "login is not success",
+                    State = false
+                };
             }
             return new JsonContractResult
             {
-                Data = (int)auth,
+                Data = res,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -122,10 +170,17 @@ namespace Api.Ecart.Controllers
             if (type == Enums.TokenType.Sorry){
                 return null;
             }
+
             App.DbService.Util.Enums.TokenType t = (App.DbService.Util.Enums.TokenType)(int)type;
+            var ac = userService.TokenValidate(t, token, SessionConfig.Email);
+            if (ac.ResponseCode == ResponseCode.Success)
+            {
+                SessionConfig.EmailConfirmed = true;
+            }
+
             return new JsonContractResult
             {
-                Data = userService.TokenValidate(t, token, "")
+                Data = ac
             };
         }
     }

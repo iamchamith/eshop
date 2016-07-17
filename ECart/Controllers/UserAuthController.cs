@@ -7,11 +7,17 @@ using System.Web.Mvc;
 
 namespace ECart.Controllers
 {
-    public class UserAuthController : Controller
+    public class UserAuthController : BaseController
     {
         [HttpGet]
         public ActionResult Index() {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult VerifySessionToken() {
+
+            return null;
         }
 
         [ChildActionOnly]
@@ -46,7 +52,7 @@ namespace ECart.Controllers
         }
         //UserAuth/Verification
         [HttpGet]
-        public ActionResult Verification(Enums.Verification val) {
+        public ActionResult Verification(Enums.Verification val = Enums.Verification.Invelied) {
             ViewBag.validate = val;
             return View();
         }

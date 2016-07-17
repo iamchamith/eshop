@@ -1,6 +1,6 @@
 ﻿module Ecart.Brands.View {
     const message = new Ecart.Messages.sweetAlerts();
-    const baseApi = Ecart.GlobleConfig.baseApi;
+    const baseApi = Ecart.Config.domains.baseUrl();
     const prefix = baseApi + "/Brands";
     const read = prefix + "/ReadBrands";
     $(function () {

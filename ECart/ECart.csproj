@@ -214,6 +214,7 @@
     <Compile Include="Areas\Admin\Models\EntitySetupHeaderViewModel.cs" />
     <Compile Include="Areas\Admin\Models\EntityTopViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Enums.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\UserAuthController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1091,6 +1092,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="asset\ts\appts\userDomain\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1101,23 +1103,23 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="asset\ts\appts\admin\variableSetter.ts" />
     <TypeScriptCompile Include="asset\ts\appts\brands\customized.ts" />
     <TypeScriptCompile Include="asset\ts\appts\brands\setup.ts" />
     <TypeScriptCompile Include="asset\ts\appts\brands\view.ts" />
     <TypeScriptCompile Include="asset\ts\appts\categories\customized.ts" />
     <TypeScriptCompile Include="asset\ts\appts\categories\setup.ts" />
     <TypeScriptCompile Include="asset\ts\appts\categories\view.ts" />
+    <TypeScriptCompile Include="asset\ts\appts\comman\animation.ts" />
+    <TypeScriptCompile Include="asset\ts\appts\comman\config.ts" />
     <TypeScriptCompile Include="asset\ts\appts\comman\Enums.ts" />
-    <TypeScriptCompile Include="asset\ts\appts\comman\files.ts" />
-    <TypeScriptCompile Include="asset\ts\appts\comman\globleConfig.ts" />
     <TypeScriptCompile Include="asset\ts\appts\comman\messages.ts" />
-    <TypeScriptCompile Include="asset\ts\appts\comman\userManegement.ts" />
     <TypeScriptCompile Include="asset\ts\appts\comman\utility.ts" />
     <TypeScriptCompile Include="asset\ts\appts\entityComman\searchEntity.ts" />
     <TypeScriptCompile Include="asset\ts\appts\items\customized.ts" />
     <TypeScriptCompile Include="asset\ts\appts\items\setup.ts" />
     <TypeScriptCompile Include="asset\ts\appts\items\view.ts" />
-    <TypeScriptCompile Include="asset\ts\appts\user\TokenProcess.ts" />
+    <TypeScriptCompile Include="asset\ts\appts\user\tokenProcess.ts" />
     <TypeScriptCompile Include="asset\ts\appts\user\userAuthontication.ts" />
     <TypeScriptCompile Include="asset\ts\appts\comman\ajax.ts" />
     <TypeScriptCompile Include="asset\ts\appts\user\userProcess.ts" />
@@ -1141,6 +1143,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Api.Ecart\Api.Ecart.csproj">
+      <Project>{6A55E05D-2DB5-4DC0-BF4D-A0C99F2056F3}</Project>
+      <Name>Api.Ecart</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

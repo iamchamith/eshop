@@ -50,7 +50,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">@GlobleCaptions.SiteName</a>
+                <a class="navbar-brand" href="#" data-bind="text: siteName"></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -62,11 +62,16 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
+                            <a href="/Admin/User/Index"><i class="fa fa-gear fa-fw"></i>
+                            <label data-bind="text: displayName"></label>
+                            </a>
+                        </li>
+                        <li>
                             <a href="/Admin/User/Index"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <a href="#" id="btnLogOut"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -125,6 +130,8 @@
     <script src="~/asset/ts/appts/comman/ajax.js"></script>
     <script src="~/asset/js/option-plugin.js"></script>
     <script src="~/asset/ts/appts/comman/utility.js"></script>
+    <script src="~/asset/ts/appts/comman/config.js"></script>
+    <script src="~/asset/ts/appts/admin/variableSetter.js"></script>
      @RenderSection("moduleScript", required: false)
       
 

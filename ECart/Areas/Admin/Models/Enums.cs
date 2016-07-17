@@ -22,6 +22,7 @@ namespace ECart.Areas.Admin.Models
         }
 
         public enum Verification {
+            Invelied = -1,
             Email = 0,
             ForgetPassword = 1
         }

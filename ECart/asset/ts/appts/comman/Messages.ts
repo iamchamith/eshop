@@ -10,7 +10,15 @@
         errorAlert(titile = "Opps", text="Something went wrong!"):void {
             sweetAlert(titile, text, "error");
         }
-   
+        validationError(title = "Opps", errorList: any): void {
+
+            var message = "<ul>";
+            $.each(errorList, function (i, d) {
+                message += "<li style='color: red'>" + d +"<li/>";
+            });
+            message += "</ul>";
+            swal({ title: title, text: message, type:"error", html: true });
+        }
       
     }
 }

@@ -5,7 +5,7 @@ var Ecart;
         var View;
         (function (View) {
             var message = new Ecart.Messages.sweetAlerts();
-            var baseApi = Ecart.GlobleConfig.baseApi;
+            var baseApi = Ecart.Config.domains.baseUrl();
             var prefix = baseApi + "/Brands";
             var read = prefix + "/ReadBrands";
             $(function () {

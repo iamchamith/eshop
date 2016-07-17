@@ -20,6 +20,15 @@ var Ecart;
                 if (text === void 0) { text = "Something went wrong!"; }
                 sweetAlert(titile, text, "error");
             };
+            sweetAlerts.prototype.validationError = function (title, errorList) {
+                if (title === void 0) { title = "Opps"; }
+                var message = "<ul>";
+                $.each(errorList, function (i, d) {
+                    message += "<li style='color: red'>" + d + "<li/>";
+                });
+                message += "</ul>";
+                swal({ title: title, text: message, type: "error", html: true });
+            };
             return sweetAlerts;
         }());
         Messages.sweetAlerts = sweetAlerts;

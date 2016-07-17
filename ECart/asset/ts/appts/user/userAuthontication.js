@@ -3,26 +3,27 @@ var Ecart;
 (function (Ecart) {
     var Auth;
     (function (Auth) {
-        var baseApi = $('#hndBaseUrl').val();
+        var baseApi = Ecart.Config.domains.baseUrl();
         var login = baseApi + "/User/Authonticate";
         var register = baseApi + "/User/Register";
-        var emailValidation = baseApi + "";
         var changePassword = baseApi + "";
         var UpdateUser = baseApi;
         var Home = "/Admin/Dashboard";
         $(function () {
             $('#btnRegister').on('click', function () {
-                auth.register();
+                auth.register($(this).attr('id'));
             });
             $('#btnLogin').on('click', function () {
                 auth.login(login, {
                     Email: $('#txtLoginEmail').val(),
                     Password: $('#txtLogginPassword').val()
-                });
+                }, $(this).attr('id'));
             });
         });
         var auth = {
-            register: function () {
+            register: function (element) {
+                var elementDefault = $('#' + element).val();
+                Ecart.Animation.ajaxRequest.startWaiting(element);
                 new Ecart.Ajax.apiConnector().callservice(register, {
                     Email: $('#txtEmail').val(),
                     Password: $('#txtPassword').val(),
@@ -31,36 +32,41 @@ var Ecart;
                     Name: $('#txtDiaplayName').val()
                 }, Ecart.Ajax.webMethod.Post).done(function (e) {
                     console.log(e);
-                    if (Number(e.data) == Number(Ecart.Enums.AuthType.NotValidateEmail)) {
-                        $(location).attr("href", '/UserAuth/Verification');
+                    if (e.responseCode == Number(Ecart.Enums.ResponseCode.ValidationError)) {
+                        new Ecart.Messages.sweetAlerts().validationError(e.message, e.content);
+                    }
+                    else if (e.responseCode == Number(Ecart.Enums.ResponseCode.Success)) {
+                        Ecart.Utility.cookies.createCookie(Ecart.Config.cookies.userCookie, JSON.stringify(e.content));
+                        $(location).attr("href", '/UserAuth/Verification?val=0');
                     }
                     else {
                         new Ecart.Messages.sweetAlerts().errorAlert();
                     }
+                }).always(function () {
+                    Ecart.Animation.ajaxRequest.stopWaiting(element, elementDefault);
                 });
             },
-            login: function (url, data) {
+            login: function (url, data, element) {
+                var elementDefault = $('#' + element).val();
+                Ecart.Animation.ajaxRequest.startWaiting(element);
                 new Ecart.Ajax.apiConnector().callservice(url, data, Ecart.Ajax.webMethod.Post).done(function (e) {
-                    if (Number(e.data) == Number(Ecart.Enums.AuthType.NotValidateEmail)) {
-                        $(location).attr("href", '/UserAuth/Verification');
+                    if (e.responseCode == Number(Ecart.Enums.ResponseCode.Success)) {
+                        Ecart.Utility.cookies.createCookie(Ecart.Config.cookies.userCookie, JSON.stringify(e.content));
+                        if (e.content.emailConfirmed) {
+                            $(location).attr('href', Home);
+                        }
+                        else {
+                            $(location).attr("href", '/UserAuth/Verification?val=0');
+                        }
                     }
-                    else if (Number(e.data) == Number(Ecart.Enums.AuthType.ValidateEmail)) {
-                        $(location).attr("href", Home);
-                    }
-                    else if (Number(e.data) == Number(Ecart.Enums.AuthType.ValidationError))
-                        new Ecart.Messages.sweetAlerts().errorAlert("invalied username or password");
                     else {
-                        new Ecart.Messages.sweetAlerts().errorAlert();
-                        console.error(e);
+                        new Ecart.Messages.sweetAlerts().errorAlert("invalied username or password");
                     }
+                }).always(function () {
+                    Ecart.Animation.ajaxRequest.stopWaiting(element, elementDefault);
                 });
+                ;
             },
-            emailValidate: function () {
-            },
-        };
-        var changeSettions = {
-            updateUser: function () { },
-            changePassword: function () { },
         };
     })(Auth = Ecart.Auth || (Ecart.Auth = {}));
 })(Ecart || (Ecart = {}));
