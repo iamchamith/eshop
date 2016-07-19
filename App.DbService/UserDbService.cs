@@ -14,10 +14,12 @@ namespace App.DbService
     public interface IUserDbService {
 
         ActionDetails Authenticate(UserBo user);
+        ActionDetails Authenticate(string email);
         ActionDetails RegisterUser(UserBo user);
         ActionDetails ChangePassword(UserChangePasswordBo user);
         ActionDetails ReadUserInfo(string email);
         ActionDetails TokenValidate(Enums.TokenType type,string token,string email);
+        ActionDetails ForgetPasswordRequest(string email);
     }
 
 
@@ -48,6 +50,40 @@ namespace App.DbService
                 return ResponseMessage.Success(content: x);
             }
             catch (InvaliedLoginExceptions ex) {
+                return ResponseMessage.Error(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage.Error(ex, "invalied login info", responseCode: ResponseCode.ServerError);
+            }
+        }
+
+        public ActionDetails Authenticate(string email)
+        {
+            try
+            {
+                var userInfo = (from users in dba.Users
+                                join userdomain in dba.UserDomains on users.UserDomains.ToList().FirstOrDefault().DomainId equals userdomain.DomainId
+                                where users.Email == email
+                                select new { emailConfirim = users.EmailConfirmed, name = users.Name, domainId = userdomain.DomainId, email = users.Email, enable = userdomain.Enable }).FirstOrDefault();
+
+                if (userInfo == null)
+                {
+                    throw new InvaliedLoginExceptions("username or password is wrong");
+                }
+
+                var x = new UserBo
+                {
+                    Name = userInfo.name,
+                    EmailConfirmed = userInfo.emailConfirim,
+                    DomainId = userInfo.domainId,
+                    Email = userInfo.email
+                };
+
+                return ResponseMessage.Success(content: x);
+            }
+            catch (InvaliedLoginExceptions ex)
+            {
                 return ResponseMessage.Error(ex.Message);
             }
             catch (Exception ex)
@@ -209,11 +245,34 @@ namespace App.DbService
                         dba.SaveChanges();
                     }
                 }
-                return ResponseMessage.Success();
+                return ResponseMessage.Success(content: Authenticate(email).Content);
             }
             catch (Exception ex)
             {
-                return ResponseMessage.Error(ex, "invalied token", responseCode: ResponseCode.ValidationError);
+                return ResponseMessage.Error(ex);
+            }
+        }
+
+        public ActionDetails ForgetPasswordRequest(string email) {
+            try
+            {
+                var userObj = dba.Users.Where(p => p.Email == email).FirstOrDefault();
+                if (userObj==null)
+                {
+                    return ResponseMessage.Error("invalied email");
+                }
+                else
+                {
+                    userObj.Token = Guid.NewGuid().ToString();
+                    userObj.TokenType = (int)Enums.TokenType.ForgetPassword;
+                    dba.SaveChanges();
+                    // send email
+                    return ResponseMessage.Success("token has been sended");
+                }
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage.Error(ex);
             }
         }
     }

@@ -227,6 +227,7 @@
     <Compile Include="Utility\AdminAccessAttribute.cs" />
     <Compile Include="Utility\AllowCrossSiteJson.cs" />
     <Compile Include="Utility\Comman.cs" />
+    <Compile Include="Utility\CompressContentAttribute.cs" />
     <Compile Include="Utility\GlobleConfig.cs" />
     <Compile Include="Utility\ImageProcess.cs" />
     <Compile Include="Utility\JsonContractResult.cs" />

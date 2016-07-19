@@ -34,7 +34,7 @@ namespace App.Poco
         [StringLength(100)]
         public string Token { get; set; }
 
-        public int TokenType { get; set; }
+        public int? TokenType { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserDomain> UserDomains { get; set; }

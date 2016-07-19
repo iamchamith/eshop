@@ -16,10 +16,11 @@ namespace Api.Ecart.Controllers
     {
 
         [HttpGet]
-        public ActionResult Index (){ return View(); }
+        public ActionResult Index() { return View(); }
 
         [HttpPost]
         [AllowCrossSiteJson]
+        [CompressContent]
         public JsonResult Register(UserViewModel user)
         {
             var res = new ActionDetails();
@@ -66,12 +67,14 @@ namespace Api.Ecart.Controllers
             }
             return new JsonContractResult
             {
-                Data = res ,
+                Data = res,
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
         [HttpPost]
         [AllowCrossSiteJson]
+        [CompressContent]
         public JsonResult Authonticate(UserViewModel user)
         {
             var res = new ActionDetails();
@@ -106,7 +109,20 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+        //User/ForgetPasswordRequest
         [HttpPost]
+        [CompressContent]
+        public JsonResult ForgetPasswordRequest(string email) {
+            return new JsonContractResult
+            {
+                Data =  userService.ForgetPasswordRequest(email),
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        [HttpPost]
+        [CompressContent]
         public JsonResult ChangePassword(ChangePasswordViewModel user)
         {
 
@@ -118,7 +134,9 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
         [HttpPost]
+        [CompressContent]
         public JsonResult ChangeSettings(ChangePasswordViewModel user)
         {
 
@@ -132,6 +150,7 @@ namespace Api.Ecart.Controllers
         }
         //User/GetUserInfo
         [HttpGet]
+        [CompressContent]
         public JsonResult GetUserInfo()
         {
 
@@ -155,6 +174,7 @@ namespace Api.Ecart.Controllers
         }
 
         [HttpGet]
+        [CompressContent]
         public JsonResult LogOut()
         {
             Session.Abandon();
@@ -165,17 +185,27 @@ namespace Api.Ecart.Controllers
         }
 
         [HttpPost]
-        public JsonResult TokenValidate(string token = "", Enums.TokenType type = Enums.TokenType.Sorry)
+        [CompressContent]
+        public JsonResult TokenValidate(string token = "", Enums.TokenType type = Enums.TokenType.Sorry,string email="")
         {
             if (type == Enums.TokenType.Sorry){
                 return null;
             }
-
+            string _email = (type == Enums.TokenType.Email) ? SessionConfig.Email : email;
+            
             App.DbService.Util.Enums.TokenType t = (App.DbService.Util.Enums.TokenType)(int)type;
-            var ac = userService.TokenValidate(t, token, SessionConfig.Email);
-            if (ac.ResponseCode == ResponseCode.Success)
+            var ac = userService.TokenValidate(t, token, _email);
+
+            if (type == Enums.TokenType.Email)
             {
-                SessionConfig.EmailConfirmed = true;
+                if (ac.ResponseCode == ResponseCode.Success)
+                {
+                    SessionConfig.EmailConfirmed = true;
+                }
+            }
+            else if (type == Enums.TokenType.ForgetPassword) {
+                var repo = Mapper.Map<SessionModel>((UserBo)ac.Content);
+                SessionConfig.Session = repo;
             }
 
             return new JsonContractResult

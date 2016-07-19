@@ -9,6 +9,7 @@ var Ecart;
         var changePassword = baseApi + "";
         var UpdateUser = baseApi;
         var Home = "/Admin/Dashboard";
+        var forgetPassword = baseApi + "/User/ForgetPasswordRequest";
         $(function () {
             $('#btnRegister').on('click', function () {
                 auth.register($(this).attr('id'));
@@ -18,6 +19,9 @@ var Ecart;
                     Email: $('#txtLoginEmail').val(),
                     Password: $('#txtLogginPassword').val()
                 }, $(this).attr('id'));
+            });
+            $('#btnForgetPasswordSendRequest').on('click', function () {
+                auth.forgetPasswordRequest($(this).attr('id'), $('#txtForgetPasswordSendRequest').val());
             });
         });
         var auth = {
@@ -65,7 +69,24 @@ var Ecart;
                 }).always(function () {
                     Ecart.Animation.ajaxRequest.stopWaiting(element, elementDefault);
                 });
-                ;
+            },
+            forgetPasswordRequest: function (element, email) {
+                var elementDefault = $('#' + element).val();
+                Ecart.Animation.ajaxRequest.startWaiting(element);
+                new Ecart.Ajax.apiConnector().callservice(forgetPassword, { email: email }, Ecart.Ajax.webMethod.Post).done(function (e) {
+                    if (e.responseCode == Number(Ecart.Enums.ResponseCode.ValidationError)) {
+                        new Ecart.Messages.sweetAlerts().errorAlert("invalied email address");
+                    }
+                    else if (e.responseCode == Number(Ecart.Enums.ResponseCode.Success)) {
+                        $(location).attr("href", '/UserAuth/Verification?val=1&email=' + email + '');
+                    }
+                    else {
+                        console.error(e);
+                    }
+                    console.log(e);
+                }).always(function () {
+                    Ecart.Animation.ajaxRequest.stopWaiting(element, elementDefault);
+                });
             },
         };
     })(Auth = Ecart.Auth || (Ecart.Auth = {}));

@@ -7,6 +7,7 @@ module Ecart.Auth {
     const changePassword = baseApi + "";
     const UpdateUser = baseApi;
     const Home = "/Admin/Dashboard"
+    const forgetPassword = baseApi + "/User/ForgetPasswordRequest";
 
     $(function () {
   
@@ -19,6 +20,9 @@ module Ecart.Auth {
                 Email: $('#txtLoginEmail').val(),
                 Password: $('#txtLogginPassword').val()
             },$(this).attr('id'));
+        });
+        $('#btnForgetPasswordSendRequest').on('click', function () {
+            auth.forgetPasswordRequest($(this).attr('id'), $('#txtForgetPasswordSendRequest').val());
         });
        
     });
@@ -65,7 +69,24 @@ module Ecart.Auth {
                 }
             }).always(function () {
                 Ecart.Animation.ajaxRequest.stopWaiting(element, elementDefault);
-            });;
+            });
+        },
+        forgetPasswordRequest: function (element: any,email:string): void {
+
+            var elementDefault = $('#' + element).val();
+            Ecart.Animation.ajaxRequest.startWaiting(element);
+            new Ecart.Ajax.apiConnector().callservice(forgetPassword, { email: email }, Ajax.webMethod.Post).done(function (e) {
+                if (e.responseCode == Number(Ecart.Enums.ResponseCode.ValidationError)) {
+                    new Ecart.Messages.sweetAlerts().errorAlert("invalied email address");
+                } else if (e.responseCode == Number(Ecart.Enums.ResponseCode.Success)) {
+                    $(location).attr("href", '/UserAuth/Verification?val=1&email='+email+'');
+                } else {
+                    console.error(e);
+                }
+                console.log(e);
+            }).always(function () {
+                Ecart.Animation.ajaxRequest.stopWaiting(element, elementDefault);
+            });
         },
     };
 

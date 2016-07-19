@@ -12,7 +12,10 @@ namespace Api.Ecart.Controllers
 {
     public class BrandsController : BaseController
     {
-        [AdminAccessAttribute]
+     
+        [HttpGet]
+        [CompressContent]
+        [AdminAccess]
         public JsonResult ReadBrands(string id="0")
         {
             var brandDetails = brandsService.ReadBrands(SessionConfig.DomainId);
@@ -38,7 +41,10 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
-        [AdminAccessAttribute]
+
+        [HttpGet]
+        [CompressContent]
+        [AdminAccess]
         public JsonResult ReadBrandsById(string id)
         {
             var brandDetails = brandsService.ReadBrandsById(id);
@@ -55,8 +61,10 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
         [HttpPost]
-        [AdminAccessAttribute]
+        [CompressContent]
+        [AdminAccess]
         public JsonResult UpdateBrands(BrandViewModel brand)
         {
             brand.DomainId = SessionConfig.DomainId;
@@ -68,8 +76,10 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
         [HttpPost]
-        [AdminAccessAttribute]
+        [CompressContent]
+        [AdminAccess]
         public JsonResult CreateBrands(BrandViewModel brand) {
 
             brand.BrandId = Guid.NewGuid().ToString();
@@ -82,8 +92,10 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
         [HttpPost]
-        [AdminAccessAttribute]
+        [CompressContent]
+        [AdminAccess]
         public JsonResult DeleteBrand(string brandId)
         {
             Mapper.CreateMap<BrandViewModel, BrandBo>();
@@ -104,7 +116,8 @@ namespace Api.Ecart.Controllers
         }
 
         [HttpGet]
-        [AdminAccessAttribute]
+        [CompressContent]
+        [AdminAccess]
         public JsonResult Search(string query="") {
 
             var brandDetails = brandsService.ReadBrands(SessionConfig.DomainId);
@@ -137,6 +150,22 @@ namespace Api.Ecart.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
+
+        #region Ordering
+        [HttpGet]
+        [CompressContent]
+        [AdminAccess]
+        public JsonResult BrandsOrderList() {
+            return null;
+        }
+
+        [HttpPost]
+        [CompressContent]
+        [AdminAccess]
+        public JsonResult UpdateBrandOrderList() {
+            return null;
+        }
+        #endregion
 
     }
 }

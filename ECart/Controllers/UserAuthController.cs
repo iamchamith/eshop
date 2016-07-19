@@ -52,7 +52,8 @@ namespace ECart.Controllers
         }
         //UserAuth/Verification
         [HttpGet]
-        public ActionResult Verification(Enums.Verification val = Enums.Verification.Invelied) {
+        public ActionResult Verification(Enums.Verification val = Enums.Verification.Invelied,string email="") {
+            ViewBag.email = email;
             ViewBag.validate = val;
             return View();
         }

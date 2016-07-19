@@ -17,10 +17,11 @@ namespace App.DbService
         ActionDetails ReadBrandsById(string BrandId);
         ActionDetails UpdateBrands(BrandBo brand);
         ActionDetails DeleteBrand(BrandBo brand);
+        ActionDetails BrandsOrderList(string domainId);
     }
 
     public class BrandsDbService : BaseService, IBrandsDbService
-    {
+    { 
         public ActionDetails CreateBrands(BrandBo brand)
         {
             try
@@ -132,5 +133,23 @@ namespace App.DbService
                 return ResponseMessage.Error(ex);
             }
         }
+        #region Ordering
+        public ActionDetails BrandsOrderList(string domainId)
+        {
+            try
+            {
+                var obj = dba.Brands.Where(p => p.DomainId == domainId).ToList();
+                if (obj == null)
+                {
+                    throw new Exception("Brand canot be found");
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage.Error(ex);
+            }
+        }
+        #endregion
     }
 }
