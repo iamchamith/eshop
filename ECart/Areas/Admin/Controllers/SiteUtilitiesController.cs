@@ -13,9 +13,14 @@ namespace ECart.Areas.Admin.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public ActionResult SitePages() {
 
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult SiteSettings() {
             return View();
         }
     }

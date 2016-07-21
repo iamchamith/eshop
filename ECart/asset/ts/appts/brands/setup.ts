@@ -1,7 +1,7 @@
 ﻿module Ecart.Brands.Setup {
 
    
-    const baseApi = "http://localhost:16666";
+    const baseApi = Ecart.Config.domains.baseUrl();
     const baseSite = "";
     const prefix = baseApi + "/Brands";
     const read = prefix + "/ReadBrandsById";
@@ -48,7 +48,7 @@
 
             $("#imgFile").kendoUpload({
                 async: {
-                    saveUrl: fileUpload + "?fileType=0",
+                    saveUrl: fileUpload + "?fileType=" + Number(Enums.FileType.Brands),
                     autoUpload: true
                 },
                 multiple: false,

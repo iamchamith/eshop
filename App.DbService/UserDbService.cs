@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 using App.Poco;
 using App.Bo;
 using AutoMapper;
-using App.DbService.Util;
-
+ 
 namespace App.DbService
 {
     public interface IUserDbService {
@@ -20,6 +19,7 @@ namespace App.DbService
         ActionDetails ReadUserInfo(string email);
         ActionDetails TokenValidate(Enums.TokenType type,string token,string email);
         ActionDetails ForgetPasswordRequest(string email);
+        ActionDetails UpdateUserDetails(string email,string name);
     }
 
 
@@ -269,6 +269,28 @@ namespace App.DbService
                     // send email
                     return ResponseMessage.Success("token has been sended");
                 }
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage.Error(ex);
+            }
+        }
+
+        public ActionDetails UpdateUserDetails(string email, string name)
+        {
+            try
+            {
+                var user = dba.Users.Where(p => p.Email == email).FirstOrDefault();
+                if (user==null)
+                {
+                    return ResponseMessage.Error("user not found");
+                }
+                else
+                {
+                    user.Name = name;
+                    dba.SaveChanges();
+                }
+                return ResponseMessage.Success();
             }
             catch (Exception ex)
             {

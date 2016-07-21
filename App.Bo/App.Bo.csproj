@@ -43,11 +43,14 @@
     <Compile Include="BrandBo.cs" />
     <Compile Include="CategoriesSortBo.cs" />
     <Compile Include="CategoryBo.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="FillDropDownBo.cs" />
     <Compile Include="ProductBo.cs" />
     <Compile Include="ProductsImageBo.cs" />
     <Compile Include="ProductsSortBo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SiteGlobleVariableBo.cs" />
+    <Compile Include="SiteSettingsBo.cs" />
     <Compile Include="UserBo.cs" />
     <Compile Include="UserChangePasswordBo.cs" />
     <Compile Include="UserDomainBo.cs" />

@@ -4,7 +4,7 @@ var Ecart;
     (function (Brands) {
         var Setup;
         (function (Setup) {
-            var baseApi = "http://localhost:16666";
+            var baseApi = Ecart.Config.domains.baseUrl();
             var baseSite = "";
             var prefix = baseApi + "/Brands";
             var read = prefix + "/ReadBrandsById";
@@ -48,7 +48,7 @@ var Ecart;
                     $('#btnBrandsDelete').click(function () { crud.delete(deleted); });
                     $("#imgFile").kendoUpload({
                         async: {
-                            saveUrl: fileUpload + "?fileType=0",
+                            saveUrl: fileUpload + "?fileType=" + Number(Ecart.Enums.FileType.Brands),
                             autoUpload: true
                         },
                         multiple: false,
@@ -178,4 +178,3 @@ var Ecart;
         })(Setup = Brands.Setup || (Brands.Setup = {}));
     })(Brands = Ecart.Brands || (Ecart.Brands = {}));
 })(Ecart || (Ecart = {}));
-//# sourceMappingURL=setup.js.map

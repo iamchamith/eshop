@@ -27,4 +27,25 @@
         ValidationError = 3,
         ServerError = 4
     }
+
+    export enum SitePages {
+        ContactUs = 0,
+        AboutUs = 1
+    }
+
+    export enum SiteVariables {
+        SiteName = 0,
+        MoneyType = 1,
+        PhoneNumber = 2,
+        Email = 3,
+        Seo = 4,
+        Logo = 5,
+        Fb = 6
+    }
+    export enum FileType {
+        Brands = 0,
+        Categories = 1,
+        Products = 2,
+        SiteLogo = 3
+    }
 }

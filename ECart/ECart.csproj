@@ -1049,6 +1049,8 @@
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SiteUtilities\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SiteUtilities\SitePages.cshtml" />
+    <Content Include="Areas\Admin\Views\SitePages\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SiteUtilities\SiteSettings.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1103,6 +1105,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="asset\ts\appts\adminSite\sitePage.ts" />
+    <TypeScriptCompile Include="asset\ts\appts\adminSite\siteSettings.ts" />
     <TypeScriptCompile Include="asset\ts\appts\admin\variableSetter.ts" />
     <TypeScriptCompile Include="asset\ts\appts\brands\customized.ts" />
     <TypeScriptCompile Include="asset\ts\appts\brands\setup.ts" />

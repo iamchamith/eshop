@@ -13,11 +13,14 @@ namespace Api.Ecart.Controllers
     { 
         protected IUserDbService userService = null;
         protected IBrandsDbService brandsService = null;
+        protected ISitePageDbService siteService = null;
+        protected ISiteSettingsDbService siteSettings = null;
         public BaseController()
         {
- 
             userService = new UserDbService();
             brandsService = new BrandsDbService();
+            siteService = new SitePageDbService();
+            siteSettings = new SiteSettingsDbService();
         }
 
         [HttpGet]

@@ -125,12 +125,24 @@ namespace Api.Ecart.Controllers
         [CompressContent]
         public JsonResult ChangePassword(ChangePasswordViewModel user)
         {
-
+            user.Email = SessionConfig.Email;
             Mapper.CreateMap<ChangePasswordViewModel, UserChangePasswordBo>();
             return new JsonContractResult
             {
                 Data =
                 new { data = userService.ChangePassword(Mapper.Map<UserChangePasswordBo>(user)) },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        [HttpPost]
+        [CompressContent]
+        public JsonResult UpdateUserDetails(string displayName) {
+
+            return new JsonContractResult
+            {
+                Data =
+                new { data = userService.UpdateUserDetails(SessionConfig.Email,displayName) },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -193,7 +205,7 @@ namespace Api.Ecart.Controllers
             }
             string _email = (type == Enums.TokenType.Email) ? SessionConfig.Email : email;
             
-            App.DbService.Util.Enums.TokenType t = (App.DbService.Util.Enums.TokenType)(int)type;
+            Enums.TokenType t = (Enums.TokenType)(int)type;
             var ac = userService.TokenValidate(t, token, _email);
 
             if (type == Enums.TokenType.Email)

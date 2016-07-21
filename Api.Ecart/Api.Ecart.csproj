@@ -202,6 +202,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BrandsController.cs" />
+    <Compile Include="Controllers\SiteAdministrationController.cs" />
     <Compile Include="Controllers\SiteSettingsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UtilitiesController.cs" />
@@ -213,7 +214,6 @@
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\ChangePasswordViewModel.cs" />
     <Compile Include="Models\KeyValueViewModel.cs" />
-    <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\ModelValidation\UserAuth\RegistrationValidation.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\ProductsImageViewModel.cs" />
@@ -238,6 +238,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Files\Brands\no.jpg" />
     <Content Include="Files\Brands\thumb\no.jpg" />
+    <Content Include="Files\Categories\no.jpg" />
+    <Content Include="Files\Categories\thumb\no.jpg" />
+    <Content Include="Files\Products\no.jpg" />
+    <Content Include="Files\Products\thumb\no.jpg" />
+    <Content Include="Files\SiteLogo\no.jpg" />
+    <Content Include="Files\SiteLogo\thumb\no.jpg" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -251,9 +257,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Files\Categories\" />
-    <Folder Include="Files\Products\" />
     <Folder Include="Views\Brands\" />
+    <Folder Include="Views\SitePages\" />
     <Folder Include="Views\SiteSettings\" />
     <Folder Include="Views\Utilities\" />
   </ItemGroup>
