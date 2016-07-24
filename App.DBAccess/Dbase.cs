@@ -17,7 +17,10 @@
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<CategoriesSort> CategoriesSorts { get; set; }
+        public virtual DbSet<ImageSlider> ImageSliders { get; set; }
+        public virtual DbSet<ImageSliderOrder> ImageSliderOrders { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductsCategory> ProductsCategories { get; set; }
         public virtual DbSet<ProductsImage> ProductsImages { get; set; }
         public virtual DbSet<ProductsSort> ProductsSorts { get; set; }
         public virtual DbSet<SiteGlobleVariable> SiteGlobleVariables { get; set; }
@@ -61,7 +64,7 @@
 
             modelBuilder.Entity<Category>()
                 .Property(e => e.Parent)
-                .IsFixedLength();
+                .IsUnicode(false);
 
             modelBuilder.Entity<Category>()
                 .HasMany(e => e.CategoriesSorts)
@@ -75,6 +78,18 @@
 
             modelBuilder.Entity<CategoriesSort>()
                 .Property(e => e.CategoryId)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ImageSlider>()
+                .Property(e => e.DomainId)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ImageSlider>()
+                .Property(e => e.Image)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ImageSliderOrder>()
+                .Property(e => e.DomainId)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Product>()
@@ -97,6 +112,14 @@
                 .HasMany(e => e.ProductsSorts)
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ProductsCategory>()
+                .Property(e => e.ProductId)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ProductsCategory>()
+                .Property(e => e.CategoryId)
+                .IsUnicode(false);
 
             modelBuilder.Entity<ProductsImage>()
                 .Property(e => e.ProductId)

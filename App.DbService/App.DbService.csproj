@@ -57,6 +57,7 @@
     <Compile Include="BrandsDbService.cs" />
     <Compile Include="CategoryDbService.cs" />
     <Compile Include="ErrorDbService.cs" />
+    <Compile Include="ImageSlider.cs" />
     <Compile Include="ProductsDbService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SitePageDbService.cs" />

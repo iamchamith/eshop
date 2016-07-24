@@ -11,7 +11,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                @{ Html.RenderAction("_EntitySetupControlles", "EntityComman", new { type = EntityHeader.Categories });}
+                @{ Html.RenderAction("_EntitySetupControlles", "EntityComman", new { type = Enums.EntityHeader.Categories });}
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -20,12 +20,12 @@
                             <div class="row">
                                 <div class="col-lg-8">
                                     <div class="form-group">
-                                        <label>Brand name</label>
-                                        <input class="form-control" placeholder="Enter Brand name" id="txtBrandName" name="txtBrandName">
+                                        <label>Category name</label>
+                                        <input class="form-control" placeholder="Enter Category name" id="txtCategoryName" name="txtCategoryName">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
-                                    <input type="checkbox" />
+                                    <input type="checkbox"  id="isCategoryEnable"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -33,7 +33,8 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label>Discription</label>
+                                                <label>Parent</label>
+                                                <br />
                                                 <input rows="3" id="ddCategoryParent" name="ddCategoryParent" />
                                             </div>
                                         </div>
@@ -50,16 +51,16 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label>SEO</label>
-                                                <textarea class="form-control" rows="3"></textarea>
+                                                <label>Seo</label>
+                                                <textarea class="form-control" rows="3" id="txtSeo"></textarea>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="file">
+                                    <input type="file" id="imgFile">
                                     <br />
-                                    <img class="img-rounded" src="http://betanews.com/wp-content/uploads/2022/08/Microsoft-Logo1.jpg" />
+                                    <img class="img-rounded" src="http://betanews.com/wp-content/uploads/2022/08/Microsoft-Logo1.jpg" id="imgCaregoryImage"/>
                                 </div>
 
                             </div>
@@ -76,7 +77,10 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-
+ 
+<input type="hidden" name="hndFilePath" id="hndFilePath" value="no.jpg" />
+<input type="hidden" name="hndCategoryId" id="hndCategoryId" value="0" />
+<input type="hidden" name="hndMode" id="hndMode" value="0" />
 @section moduleScript{
 
     <script src="~/asset/ts/appts/categories/setup.js"></script>

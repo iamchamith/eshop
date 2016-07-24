@@ -46,6 +46,7 @@
         Brands = 0,
         Categories = 1,
         Products = 2,
-        SiteLogo = 3
+        SiteLogo = 3,
+        ImageSlider = 4
     }
 }

@@ -1,0 +1,34 @@
+﻿@using ECart.Areas.Admin.Models;
+@{
+    ViewBag.Title = "Verification";
+    Layout = "~/Views/Shared/_LayoutFront.cshtml";
+}
+
+@if (ViewBag.validate == (int)Enums.Verification.Email)
+{
+    <h2>Type Email validation Code</h2>
+}
+else
+{
+    <h2>Type Password forget Code</h2>
+}
+<hr />
+<p>hi <b id="lblName"></b>, <br />
+    The verification code sened to your email.</p>
+<div id="template_forgetPasswordRequest">
+    <form role="form">
+        <fieldset>
+            <div class="form-group">
+                <input class="form-control" placeholder="verification code" name="txtToken" id="txtToken" type="text" autofocus>
+            </div>
+            <!-- Change this to a button or input when using this as a form -->
+            <input type="button" class="btn btn-lg btn-success btn-block" value="Send request" id="btnSendTokenRequest" name="btnSendTokenRequest"/>
+        </fieldset>
+    </form>
+</div>
+<input type="hidden" name="hndTokenType" id="hndTokenType" value="@((int)(Enums.Verification)ViewBag.validate)" />
+<input type="hidden" name="hndEmail" id="hndEmail" value="@ViewBag.email" />
+@section moduleScript{
+     
+<script src="~/asset/ts/appts/user/tokenProcess.js"></script>
+}

@@ -45,6 +45,7 @@
     <Compile Include="CategoryBo.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="FillDropDownBo.cs" />
+    <Compile Include="ImageSliderBo.cs" />
     <Compile Include="ProductBo.cs" />
     <Compile Include="ProductsImageBo.cs" />
     <Compile Include="ProductsSortBo.cs" />

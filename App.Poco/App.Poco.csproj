@@ -55,8 +55,10 @@
     <Compile Include="BrandOrder.cs" />
     <Compile Include="CategoriesSort.cs" />
     <Compile Include="Category.cs" />
-    <Compile Include="Dba.cs" />
+    <Compile Include="ImageSlider.cs" />
+    <Compile Include="ImageSliderOrder.cs" />
     <Compile Include="Product.cs" />
+    <Compile Include="ProductsCategory.cs" />
     <Compile Include="ProductsImage.cs" />
     <Compile Include="ProductsSort.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

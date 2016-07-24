@@ -35,7 +35,7 @@ namespace App.Poco
         [StringLength(50)]
         public string Image { get; set; }
 
-        [StringLength(10)]
+        [StringLength(50)]
         public string Parent { get; set; }
 
         public bool? Enable { get; set; }

@@ -15,12 +15,17 @@ namespace Api.Ecart.Controllers
         protected IBrandsDbService brandsService = null;
         protected ISitePageDbService siteService = null;
         protected ISiteSettingsDbService siteSettings = null;
+        protected ICategoryDbService categoryDbService = null;
+        protected IImageSlider ImageSlider = null;
+
         public BaseController()
         {
             userService = new UserDbService();
             brandsService = new BrandsDbService();
             siteService = new SitePageDbService();
             siteSettings = new SiteSettingsDbService();
+            categoryDbService = new CategoryDbService();
+            ImageSlider = new ImageSlider();
         }
 
         [HttpGet]

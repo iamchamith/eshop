@@ -10,13 +10,14 @@ using AutoMapper;
 
 namespace App.DbService
 {
-    interface ICategoryDbService
+    public interface ICategoryDbService
     {
         ActionDetails CreateCategory(CategoryBo category);
         ActionDetails ReadCategorys(string DomainId);
         ActionDetails ReadCategoryById(string categoryId);
         ActionDetails UpdateCategory(CategoryBo category);
         ActionDetails DeleteCategory(CategoryBo category);
+        ActionDetails ReadCategories(string domainId);
     }
 
     public class CategoryDbService : BaseService, ICategoryDbService
@@ -74,7 +75,7 @@ namespace App.DbService
             try
             {
                 Mapper.CreateMap<Category, CategoryBo>();
-                var category = dba.Brands.Where(p => p.BrandId == categoryId).FirstOrDefault();
+                var category = dba.Categories.Where(p => p.Category_Id == categoryId).FirstOrDefault();
                 if (category == null)
                 {
                     throw new Exception("entity not found");
@@ -91,7 +92,8 @@ namespace App.DbService
         {
             try
             {
-                var obj = dba.Categories.Where(p => p.Category_Id == category.Category_Id && p.DomainId == category.DomainId).FirstOrDefault();
+                var obj = dba.Categories.Where(p => p.Category_Id == category.Category_Id 
+                && p.DomainId == category.DomainId).FirstOrDefault();
                 if (obj == null)
                 {
                     throw new Exception("entity canot be found");
@@ -102,8 +104,40 @@ namespace App.DbService
                 obj.Enable = category.Enable;
                 obj.Image = category.Image;
                 obj.Seo = category.Seo;
+                obj.Parent = category.Parent;
                 dba.SaveChanges();
                 return ResponseMessage.Success();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage.Error(ex);
+            }
+        }
+
+        public ActionDetails ReadCategories(string domainId) {
+
+            try
+            {
+                var x = from o in dba.Categories
+                        where o.DomainId == domainId
+                        select new { id = o.Category_Id, name = o.Name };
+
+                var list = new List<FillDropDownBo>();
+                list.Add(new FillDropDownBo
+                {
+
+                    Text = "None",
+                    Value = "-1"
+                });
+                foreach (var item in x)
+                {
+                    list.Add(new FillDropDownBo
+                    {
+                         Value = item.id,
+                         Text = item.name
+                    });
+                }
+                return ResponseMessage.Success(list);
             }
             catch (Exception ex)
             {

@@ -5,7 +5,14 @@
 }
 
 <br />
-@{Html.RenderAction("_EntityTop", "EntityComman", new { type = EntityHeader.Categories }); }
+@{Html.RenderAction("_EntityTop", "EntityComman", new { type = Enums.EntityHeader.Categories }); }
 
+ 
+<div id="gvCategories"></div>
 
+@section moduleScript{
 
+    <script src="~/asset/ts/appts/categories/view.js"></script>
+
+    <script src="~/asset/ts/appts/entityComman/searchEntity.js"></script>
+}

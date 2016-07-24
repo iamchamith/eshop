@@ -51,6 +51,7 @@ var Ecart;
             FileType[FileType["Categories"] = 1] = "Categories";
             FileType[FileType["Products"] = 2] = "Products";
             FileType[FileType["SiteLogo"] = 3] = "SiteLogo";
+            FileType[FileType["ImageSlider"] = 4] = "ImageSlider";
         })(Enums.FileType || (Enums.FileType = {}));
         var FileType = Enums.FileType;
     })(Enums = Ecart.Enums || (Ecart.Enums = {}));

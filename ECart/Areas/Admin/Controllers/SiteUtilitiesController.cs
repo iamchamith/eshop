@@ -23,5 +23,11 @@ namespace ECart.Areas.Admin.Controllers
         public ActionResult SiteSettings() {
             return View();
         }
+
+        [HttpGet]
+        public ActionResult ImageSlider() {
+
+            return View();
+        }
     }
 }

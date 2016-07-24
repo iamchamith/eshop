@@ -44,7 +44,7 @@ namespace Api.Ecart.Controllers
             var response = userService.RegisterUser(Mapper.Map<UserBo>(user));
             Enums.AuthType auth = Enums.AuthType.Anonymas;
             if (response.ResponseCode == ResponseCode.Success)
-            {
+            { 
                 Mapper.CreateMap<UserBo, SessionModel>();
                 SessionConfig.Session = Mapper.Map<SessionModel>((UserBo)response.Content);
                 res = new ActionDetails

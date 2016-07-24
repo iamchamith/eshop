@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "ImageSlider";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Image Slider</h2>
+
+<div id="gvImages"></div>
+
+<span>upload image</span> <br />
+<div class="row">
+    <div class="col-lg-6 col-sm-6 col-md-6">
+        <input type="file" id="flImage"/>
+        <input type="button" class="btn btn-success" value="upload" id="btnUploadFile" name="btnUploadFile" />
+    </div>
+    <div class="col-lg-6 col-sm-6 col-md-6">
+        <img src="" width="150px" height="150px" id="imgSlider"/>
+    </div>
+</div>
+
+<hr />
+<b>sorting images</b>
+
+<input type="hidden" name="hndFilePath" id="hndFilePath" value="no.jpg"/>
+@section moduleScript{
+ 
+<script src="~/asset/ts/appts/adminSite/imageSlider.js"></script>
+ 
+}
+
+
