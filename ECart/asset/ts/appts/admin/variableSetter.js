@@ -25,3 +25,4 @@ var Ecart;
         })(SiteVariables = Config.SiteVariables || (Config.SiteVariables = {}));
     })(Config = Ecart.Config || (Ecart.Config = {}));
 })(Ecart || (Ecart = {}));
+//# sourceMappingURL=variableSetter.js.map

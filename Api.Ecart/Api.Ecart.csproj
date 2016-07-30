@@ -241,6 +241,8 @@
     <Content Include="Files\Brands\thumb\no.jpg" />
     <Content Include="Files\Categories\no.jpg" />
     <Content Include="Files\Categories\thumb\no.jpg" />
+    <Content Include="Files\ImageSlider\no.jpg" />
+    <Content Include="Files\ImageSlider\thumb\no.jpg" />
     <Content Include="Files\Products\no.jpg" />
     <Content Include="Files\Products\thumb\no.jpg" />
     <Content Include="Files\SiteLogo\no.jpg" />
@@ -258,7 +260,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Files\ImageSlider\thumb\" />
     <Folder Include="Views\Brands\" />
     <Folder Include="Views\Categories\" />
     <Folder Include="Views\SitePages\" />

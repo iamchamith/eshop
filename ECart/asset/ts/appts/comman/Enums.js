@@ -56,3 +56,4 @@ var Ecart;
         var FileType = Enums.FileType;
     })(Enums = Ecart.Enums || (Ecart.Enums = {}));
 })(Ecart || (Ecart = {}));
+//# sourceMappingURL=Enums.js.map

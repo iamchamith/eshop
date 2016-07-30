@@ -214,6 +214,8 @@
     <Compile Include="Areas\Admin\Models\EntitySetupHeaderViewModel.cs" />
     <Compile Include="Areas\Admin\Models\EntityTopViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Enums.cs" />
+    <Compile Include="Areas\ClientSite\ClientSiteAreaRegistration.cs" />
+    <Compile Include="Areas\ClientSite\Controllers\SiteController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\UserAuthController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1052,6 +1054,13 @@
     <Content Include="Areas\Admin\Views\SitePages\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SiteUtilities\SiteSettings.cshtml" />
     <Content Include="Areas\Admin\Views\SiteUtilities\ImageSlider.cshtml" />
+    <Content Include="Areas\ClientSite\Views\web.config" />
+    <Content Include="Areas\ClientSite\Views\Site\Index.cshtml" />
+    <Content Include="Areas\ClientSite\Views\Site\_ImageSlider.cshtml" />
+    <Content Include="Areas\ClientSite\Views\Site\_TopMenu.cshtml" />
+    <Content Include="Areas\ClientSite\Views\Site\_SiteInfomation.cshtml" />
+    <Content Include="Areas\ClientSite\Views\Site\_ItemInfomation.cshtml" />
+    <Content Include="Areas\ClientSite\Views\Site\_ItemImages.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1064,6 +1073,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="test.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1093,6 +1103,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\ClientSite\Models\" />
+    <Folder Include="Areas\ClientSite\Views\Shared\" />
     <Folder Include="asset\ts\appts\userDomain\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
@@ -1125,6 +1137,7 @@
     <TypeScriptCompile Include="asset\ts\appts\items\customized.ts" />
     <TypeScriptCompile Include="asset\ts\appts\items\setup.ts" />
     <TypeScriptCompile Include="asset\ts\appts\items\view.ts" />
+    <TypeScriptCompile Include="asset\ts\appts\template\main.ts" />
     <TypeScriptCompile Include="asset\ts\appts\user\tokenProcess.ts" />
     <TypeScriptCompile Include="asset\ts\appts\user\userAuthontication.ts" />
     <TypeScriptCompile Include="asset\ts\appts\comman\ajax.ts" />

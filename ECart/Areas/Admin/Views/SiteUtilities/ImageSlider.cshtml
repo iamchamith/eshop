@@ -6,7 +6,7 @@
 
 <h2>Image Slider</h2>
 
-<div id="gvImages"></div>
+
 
 <span>upload image</span> <br />
 <div class="row">
@@ -18,10 +18,22 @@
         <img src="" width="150px" height="150px" id="imgSlider"/>
     </div>
 </div>
-
-<hr />
-<b>sorting images</b>
-
+<br />
+<div class="row">
+    <div class="col-lg-8 col-sm-8 col-md-8">
+       
+    </div>
+    <div class="col-lg-4 col-sm-4 col-md-4">
+        <input type="button" id="btnSliderOrdering" value="UpdateOrder" class="btn btn-success" />
+    </div>
+    </div>
+<br />
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-md-12">
+        <div id="gvImages"></div>
+    </div>
+</div>
+ 
 <input type="hidden" name="hndFilePath" id="hndFilePath" value="no.jpg"/>
 @section moduleScript{
  
@@ -30,3 +42,8 @@
 }
 
 
+<style>
+    .k-grid tbody tr {
+        cursor: move;
+    }
+</style>

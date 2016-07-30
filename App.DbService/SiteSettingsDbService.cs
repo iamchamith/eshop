@@ -12,11 +12,28 @@ namespace App.DbService
 
         ActionDetails ReadSiteSettings(string domainId);
         ActionDetails UpdateSiteSettings(string domainId,List<SiteSettingsBo> siteInfo);
+        ActionDetails CheckDomainAvaiable(string domain);
+        ActionDetails UpdateDomain(string domain, string email);
     }
 
     public class SiteSettingsDbService : BaseService, ISiteSettingsDbService
     {
-       
+        public ActionDetails CheckDomainAvaiable(string domain)
+        {
+            try
+            {
+                if (!dba.UserDomains.Any(p => p.Domain == domain))
+                {
+                    return ResponseMessage.Success();
+                }
+                return ResponseMessage.Error("domain is not avaiable");
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage.Error(ex);
+            }
+        }
+
         public ActionDetails ReadSiteSettings(string domainId)
         {
             try
@@ -34,6 +51,31 @@ namespace App.DbService
             catch (Exception ex)
             {
                 return ResponseMessage.Error(ex); 
+            }
+        }
+
+        public ActionDetails UpdateDomain(string domain, string email)
+        {
+            try
+            {
+                if (CheckDomainAvaiable(domain).ResponseCode == ResponseCode.Success) {
+                    var x = dba.UserDomains.Where(p => p.UserId == email).FirstOrDefault();
+                    if (x==null)
+                    {
+                        return ResponseMessage.Error("user not found");
+                    }
+                    x.Domain = domain;
+                    dba.SaveChanges();
+                    return ResponseMessage.Success();
+                }
+                else
+                {
+                    return ResponseMessage.Error("domain is not avaiable");
+                }
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage.Error(ex);
             }
         }
 

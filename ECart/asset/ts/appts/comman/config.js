@@ -20,3 +20,4 @@ var Ecart;
         };
     })(Config = Ecart.Config || (Ecart.Config = {}));
 })(Ecart || (Ecart = {}));
+//# sourceMappingURL=config.js.map

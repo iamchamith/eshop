@@ -17,6 +17,7 @@ var Ecart;
             });
             var init = {
                 initControllers: function () {
+                    $('#imgSlider').attr('scr', filePath + "/no.jpg");
                     $("#flImage").kendoUpload({
                         async: {
                             saveUrl: fileUpload + "?fileType=" + Number(Ecart.Enums.FileType.ImageSlider),
@@ -72,6 +73,22 @@ var Ecart;
                             }
                         ]
                     });
+                    $('#gvImages').data("kendoGrid").table.kendoSortable({
+                        filter: ">tbody >tr",
+                        hint: $.noop,
+                        cursor: "move",
+                        placeholder: function (element) {
+                            return element.clone().addClass("k-state-hover").css("opacity", 0.65);
+                        },
+                        container: "#gvImages tbody",
+                        change: function (e) {
+                        }
+                    });
+                    $('#btnSliderOrdering').click(function () {
+                        $.each($('#gvImages').data("kendoGrid").table.data('kendoSortable').items(), function (i, d) {
+                            var x = $('#gvImages').data("kendoGrid").table.data('kendoSortable').element[0].innerHTML;
+                        });
+                    });
                 }
             };
             var crud = {
@@ -125,3 +142,4 @@ var Ecart;
         })(SiteImage = AdminSite.SiteImage || (AdminSite.SiteImage = {}));
     })(AdminSite = Ecart.AdminSite || (Ecart.AdminSite = {}));
 })(Ecart || (Ecart = {}));
+//# sourceMappingURL=imageSlider.js.map

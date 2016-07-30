@@ -50,3 +50,4 @@ var Ecart;
         })(View = Brands.View || (Brands.View = {}));
     })(Brands = Ecart.Brands || (Ecart.Brands = {}));
 })(Ecart || (Ecart = {}));
+//# sourceMappingURL=view.js.map

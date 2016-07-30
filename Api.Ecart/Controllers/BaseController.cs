@@ -17,7 +17,7 @@ namespace Api.Ecart.Controllers
         protected ISiteSettingsDbService siteSettings = null;
         protected ICategoryDbService categoryDbService = null;
         protected IImageSlider ImageSlider = null;
-
+     
         public BaseController()
         {
             userService = new UserDbService();

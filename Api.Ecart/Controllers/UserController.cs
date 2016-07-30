@@ -44,7 +44,7 @@ namespace Api.Ecart.Controllers
             var response = userService.RegisterUser(Mapper.Map<UserBo>(user));
             Enums.AuthType auth = Enums.AuthType.Anonymas;
             if (response.ResponseCode == ResponseCode.Success)
-            { 
+            {
                 Mapper.CreateMap<UserBo, SessionModel>();
                 SessionConfig.Session = Mapper.Map<SessionModel>((UserBo)response.Content);
                 res = new ActionDetails
@@ -95,7 +95,8 @@ namespace Api.Ecart.Controllers
                     State = true
                 };
             }
-            else {
+            else
+            {
                 res = new ActionDetails
                 {
                     ResponseCode = ResponseCode.ValidationError,
@@ -113,10 +114,11 @@ namespace Api.Ecart.Controllers
         //User/ForgetPasswordRequest
         [HttpPost]
         [CompressContent]
-        public JsonResult ForgetPasswordRequest(string email) {
+        public JsonResult ForgetPasswordRequest(string email)
+        {
             return new JsonContractResult
             {
-                Data =  userService.ForgetPasswordRequest(email),
+                Data = userService.ForgetPasswordRequest(email),
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -137,12 +139,22 @@ namespace Api.Ecart.Controllers
 
         [HttpPost]
         [CompressContent]
-        public JsonResult UpdateUserDetails(string displayName) {
+        public JsonResult UpdateUserDetails(string displayName)
+        {
+
+            if (string.IsNullOrEmpty(displayName))
+            {
+                return new JsonContractResult
+                {
+                    Data = new { data = ResponseMessage.Error("display name must have") },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
 
             return new JsonContractResult
             {
                 Data =
-                new { data = userService.UpdateUserDetails(SessionConfig.Email,displayName) },
+                new { data = userService.UpdateUserDetails(SessionConfig.Email, displayName) },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }
@@ -169,20 +181,23 @@ namespace Api.Ecart.Controllers
             Mapper.CreateMap<UserBo, UserViewModel>();
 
             var result = userService.ReadUserInfo(SessionConfig.Email);
-            result.Content = Mapper.Map<UserViewModel>((UserBo)result.Content);
+            if (result.ResponseCode == ResponseCode.Success)
+            {
+                var x = (Dictionary<int, object>)result.Content;
+                result.Content = new { user = Mapper.Map<UserViewModel>(x[0]), domain = x[1].ToString() };
+            }
+
             return new JsonContractResult
             {
                 Data =
-                new
-                {
-                    data = new
-                    {
-                        user = result,
-                        domain = "google.com"
-                    }
-                },
+                   new
+                   {
+                       data = result
+
+                   },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
+
         }
 
         [HttpGet]
@@ -198,13 +213,14 @@ namespace Api.Ecart.Controllers
 
         [HttpPost]
         [CompressContent]
-        public JsonResult TokenValidate(string token = "", Enums.TokenType type = Enums.TokenType.Sorry,string email="")
+        public JsonResult TokenValidate(string token = "", Enums.TokenType type = Enums.TokenType.Sorry, string email = "")
         {
-            if (type == Enums.TokenType.Sorry){
+            if (type == Enums.TokenType.Sorry)
+            {
                 return null;
             }
             string _email = (type == Enums.TokenType.Email) ? SessionConfig.Email : email;
-            
+
             Enums.TokenType t = (Enums.TokenType)(int)type;
             var ac = userService.TokenValidate(t, token, _email);
 
@@ -215,7 +231,8 @@ namespace Api.Ecart.Controllers
                     SessionConfig.EmailConfirmed = true;
                 }
             }
-            else if (type == Enums.TokenType.ForgetPassword) {
+            else if (type == Enums.TokenType.ForgetPassword)
+            {
                 var repo = Mapper.Map<SessionModel>((UserBo)ac.Content);
                 SessionConfig.Session = repo;
             }
@@ -223,6 +240,28 @@ namespace Api.Ecart.Controllers
             return new JsonContractResult
             {
                 Data = ac
+            };
+        }
+
+        
+        [HttpPost]
+        [CompressContent]
+        public JsonResult UpdateDomain(string domain)
+        {
+
+            return new JsonContractResult
+            {
+                Data = siteSettings.UpdateDomain(domain, SessionConfig.Email)
+            };
+        }
+
+        [HttpGet]
+        [CompressContent]
+        public JsonResult CheckDomainAvaiable(string domain)
+        {
+            return new JsonContractResult
+            {
+                Data = siteSettings.CheckDomainAvaiable(domain)
             };
         }
     }

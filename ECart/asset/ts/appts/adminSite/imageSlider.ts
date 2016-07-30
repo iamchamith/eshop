@@ -19,7 +19,9 @@
     var init = {
 
         initControllers: function () {
- 
+
+            $('#imgSlider').attr('scr', filePath+"/no.jpg");
+
             $("#flImage").kendoUpload({
                 async: {
                     saveUrl: fileUpload + "?fileType=" + Number(Enums.FileType.ImageSlider),
@@ -52,7 +54,7 @@
                     },
                     {
                         title: "Image",
-                        template: '<img src="'+filePath+'/#:image#" class="img-thumbnail entityThumbImage" />'
+                        template: '<img src="' + filePath + '/#:image#" class="img-thumbnail entityThumbImage" />'
                     },
                     {
                         command: [
@@ -61,7 +63,7 @@
                                 click: function (e) {
                                     var tr = $(e.target).closest("tr");
                                     var data = this.dataItem(tr);
-                                     
+
                                     swal({
                                         title: "Sure delete ?",
                                         type: "info",
@@ -77,7 +79,35 @@
                     }
                 ]
             });
+
+            $('#gvImages').data("kendoGrid").table.kendoSortable({
+                filter: ">tbody >tr",
+                hint: $.noop,
+                cursor: "move",
+                placeholder: function (element) {
+                    return element.clone().addClass("k-state-hover").css("opacity", 0.65);
+                },
+                container: "#gvImages tbody",
+                change: function (e) {
+
+                }
+            });
+
+
+            $('#btnSliderOrdering').click(function () {
+
+                $.each($('#gvImages').data("kendoGrid").table.data('kendoSortable').items(), function (i, d) {
+
+                    var x  = $('#gvImages').data("kendoGrid").table.data('kendoSortable').element[0].innerHTML
+
+                })
+              
+            });
         }
+
+
+      
+
     }
 
     var crud = {

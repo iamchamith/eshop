@@ -120,8 +120,9 @@ namespace App.DbService
             try
             {
                 var list = (from a in dba.Users
-                              where a.Email == email
-                              select new { Email = a.Email, Name = a.Name, CreatedDate = a.CreatedDate }).ToList();
+                            join r in dba.UserDomains on a.Email equals r.UserId
+                            where a.Email == email
+                              select new { Email = a.Email, Name = a.Name, CreatedDate = a.CreatedDate,Domain = r.Domain }).ToList();
  
                 var  result= list.Select(x => new UserBo
                 {
@@ -130,7 +131,10 @@ namespace App.DbService
                     Email = x.Email
                 }).First();
 
-                return ResponseMessage.Success(content: result);
+                var responseDic = new Dictionary<int, object>();
+                responseDic.Add(0, result);
+                responseDic.Add(1, list.First().Domain);
+                return ResponseMessage.Success(content: responseDic);
             }
             catch (Exception ex)
             {

@@ -15,6 +15,7 @@ var Ecart;
             });
             var init = {
                 initControllers: function () {
+                    $('#imgLogo').attr('src', filePath + "/no.jpg");
                     $("#flLogo").kendoUpload({
                         async: {
                             saveUrl: fileUpload + "?fileType=" + Number(Ecart.Enums.FileType.SiteLogo),
@@ -131,3 +132,4 @@ var Ecart;
         })(SiteSettings = AdminSite.SiteSettings || (AdminSite.SiteSettings = {}));
     })(AdminSite = Ecart.AdminSite || (Ecart.AdminSite = {}));
 })(Ecart || (Ecart = {}));
+//# sourceMappingURL=siteSettings.js.map

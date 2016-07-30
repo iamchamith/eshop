@@ -12,6 +12,9 @@
  
     var init = {
         initControllers: function () {
+
+            $('#imgLogo').attr('src', filePath + "/no.jpg");
+
             $("#flLogo").kendoUpload({
                 async: {
                     saveUrl: fileUpload + "?fileType=" + Number(Enums.FileType.SiteLogo),
