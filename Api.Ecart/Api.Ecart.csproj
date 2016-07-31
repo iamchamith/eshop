@@ -138,6 +138,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver, Version=2.53.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.2.53.1\lib\net40\WebDriver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -203,6 +207,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\SiteAdministrationController.cs" />
     <Compile Include="Controllers\SiteSettingsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -262,6 +267,7 @@
   <ItemGroup>
     <Folder Include="Views\Brands\" />
     <Folder Include="Views\Categories\" />
+    <Folder Include="Views\Items\" />
     <Folder Include="Views\SitePages\" />
     <Folder Include="Views\SiteSettings\" />
     <Folder Include="Views\Utilities\" />
@@ -282,10 +288,6 @@
     <ProjectReference Include="..\App.DbService\App.DbService.csproj">
       <Project>{e189c71a-7ec8-4fa8-a75e-d9e6923653ee}</Project>
       <Name>App.DbService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\App.UnitTest\App.UnitTest.csproj">
-      <Project>{846930c2-6482-4f7c-a66f-cfc5abd0a707}</Project>
-      <Name>App.UnitTest</Name>
     </ProjectReference>
     <ProjectReference Include="..\App.Utilities\App.Utilities.csproj">
       <Project>{f3a0ec7b-cc0d-463a-8f56-7b060fbade16}</Project>

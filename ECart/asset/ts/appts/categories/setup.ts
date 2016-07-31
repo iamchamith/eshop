@@ -1,4 +1,4 @@
-﻿module Ecart.Brands.View {
+﻿module Ecart.Categories.View {
 
     const baseApi = Ecart.Config.domains.baseUrl();
     const baseSite = "";
@@ -82,6 +82,7 @@
             new Ecart.Ajax.apiConnector().callservice(readCategoryList, {}, Ajax.webMethod.Get).done(
                 function (e) {
                     if (e.data.responseCode == Number(Ecart.Enums.ResponseCode.Success)) {
+                        console.log(e);
                         $("#ddCategoryParent").data("kendoComboBox").setDataSource(new kendo.data.DataSource({ data: e.data.content }));
                         $("#ddCategoryParent").data("kendoComboBox").select(0);
                     } else {
@@ -101,7 +102,7 @@
                     $('#txtSeo').val(e.data.content.seo);
                     $('#hndFilePath').val(e.data.content.image);
                     $("#ddCategoryParent").data("kendoComboBox").value(e.data.content.parent);
-                    if (e.data.content.Enable){
+                    if (e.data.content.enable){
                         $("#isCategoryEnable").prop('checked', true);
                     }
                     if (e.data.content.image == null) {
@@ -119,7 +120,7 @@
             var elementName = $('#' + element).val();
           
             swal({
-                title: "Sure insert ?",
+                title: "Sure update ?",
                 text: "",
                 type: "info",
                 showCancelButton: true,
@@ -138,7 +139,7 @@
             }, Ajax.webMethod.Post).done(
                 function (e) {
                     if (e.data.responseCode == Number(Ecart.Enums.ResponseCode.Success)) {
-                        messages.successAlert("category creation is success");
+                        messages.successAlert("updation is success");
                     }
                     else if (e.data.responseCode == Number(Ecart.Enums.ResponseCode.ValidationError)) {
                         messages.errorAlert("not success");

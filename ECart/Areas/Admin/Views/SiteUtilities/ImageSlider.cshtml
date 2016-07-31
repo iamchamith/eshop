@@ -33,17 +33,66 @@
         <div id="gvImages"></div>
     </div>
 </div>
- 
-<input type="hidden" name="hndFilePath" id="hndFilePath" value="no.jpg"/>
-@section moduleScript{
- 
-<script src="~/asset/ts/appts/adminSite/imageSlider.js"></script>
- 
-}
+<hr />
+<h2>Demo</h2>
+<br />
 
+<div class="contentWrapper">
+
+    <div class="siblingsSlider">
+        <img class="sliderItem" src="http://dummyimage.com/285x285/550000/fff" />
+        <img class="sliderItem" src="http://dummyimage.com/285x285/005500/fff" />
+        <img class="sliderItem" src="http://dummyimage.com/285x285/000055/fff" />
+        <img class="sliderItem" src="http://dummyimage.com/285x285/005555/fff" />
+        <img class="sliderItem" src="http://dummyimage.com/285x285/555500/fff" />
+        <img class="sliderItem" src="http://dummyimage.com/285x285/555555/fff" />
+        <img class="sliderItem" src="http://dummyimage.com/285x285/550055/fff" />
+    </div>
+ 
+</div>
+<br /><br /> 
+<input type="hidden" name="hndFilePath" id="hndFilePath" value="no.jpg"/>
+<link rel="stylesheet" href="http://fionna-chan.neocities.org/css/fSlider.css" type="text/css" />
 
 <style>
     .k-grid tbody tr {
         cursor: move;
     }
+
+    .fSliderWrapper .dotsWrapper {
+        text-align: center;
+    }
 </style>
+
+@section moduleScript{
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+ <script type="text/javascript" src="http://fionna-chan.neocities.org/js/common.js"></script>
+<script type="text/javascript" src="http://fionna-chan.neocities.org/js/responsive.js"></script>
+<script type="text/javascript" src="http://fionna-chan.neocities.org/js/fSlider.js"></script>
+
+<script src="~/asset/ts/appts/adminSite/imageSlider.js"></script>
+ <script>
+$(document).ready(init_fn);
+
+			function init_fn(pEvent)
+			{
+				var _slider1Touched = false;
+				var _slider2Touched = false;
+
+
+				siblingsSlider = $('.siblingsSlider').fSlider({
+					numOfNextSlides: 1,
+					slidesToShow: 1,
+					responsive: false,
+					loop: true,
+					centerMode: true,
+					showSiblingsHowMuch: 2.5,
+                    autoplay:true
+				});
+
+			}
+</script>
+}
+
+

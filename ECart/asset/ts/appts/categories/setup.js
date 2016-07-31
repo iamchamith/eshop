@@ -1,7 +1,7 @@
 var Ecart;
 (function (Ecart) {
-    var Brands;
-    (function (Brands) {
+    var Categories;
+    (function (Categories) {
         var View;
         (function (View) {
             var baseApi = Ecart.Config.domains.baseUrl();
@@ -78,6 +78,7 @@ var Ecart;
                 readList: function () {
                     new Ecart.Ajax.apiConnector().callservice(readCategoryList, {}, Ecart.Ajax.webMethod.Get).done(function (e) {
                         if (e.data.responseCode == Number(Ecart.Enums.ResponseCode.Success)) {
+                            console.log(e);
                             $("#ddCategoryParent").data("kendoComboBox").setDataSource(new kendo.data.DataSource({ data: e.data.content }));
                             $("#ddCategoryParent").data("kendoComboBox").select(0);
                         }
@@ -95,7 +96,7 @@ var Ecart;
                         $('#txtSeo').val(e.data.content.seo);
                         $('#hndFilePath').val(e.data.content.image);
                         $("#ddCategoryParent").data("kendoComboBox").value(e.data.content.parent);
-                        if (e.data.content.Enable) {
+                        if (e.data.content.enable) {
                             $("#isCategoryEnable").prop('checked', true);
                         }
                         if (e.data.content.image == null) {
@@ -108,7 +109,7 @@ var Ecart;
                 update: function (element) {
                     var elementName = $('#' + element).val();
                     swal({
-                        title: "Sure insert ?",
+                        title: "Sure update ?",
                         text: "",
                         type: "info",
                         showCancelButton: true,
@@ -126,7 +127,7 @@ var Ecart;
                             Enable: $("#isCategoryEnable").is(':checked')
                         }, Ecart.Ajax.webMethod.Post).done(function (e) {
                             if (e.data.responseCode == Number(Ecart.Enums.ResponseCode.Success)) {
-                                messages.successAlert("category creation is success");
+                                messages.successAlert("updation is success");
                             }
                             else if (e.data.responseCode == Number(Ecart.Enums.ResponseCode.ValidationError)) {
                                 messages.errorAlert("not success");
@@ -207,8 +208,8 @@ var Ecart;
                 clear: function () {
                 }
             };
-        })(View = Brands.View || (Brands.View = {}));
-    })(Brands = Ecart.Brands || (Ecart.Brands = {}));
+        })(View = Categories.View || (Categories.View = {}));
+    })(Categories = Ecart.Categories || (Ecart.Categories = {}));
 })(Ecart || (Ecart = {}));
 /*
     public string Category_Id { get; set; }

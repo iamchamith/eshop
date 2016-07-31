@@ -1,0 +1,12 @@
+G:\STUDENT PROJECTS\ECart\App.MsTest.Automation\bin\Debug\App.MsTest.Automation.dll
+G:\STUDENT PROJECTS\ECart\App.MsTest.Automation\bin\Debug\App.MsTest.Automation.pdb
+G:\STUDENT PROJECTS\ECart\App.MsTest.Automation\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+G:\STUDENT PROJECTS\ECart\App.MsTest.Automation\bin\Debug\WebDriver.dll
+G:\STUDENT PROJECTS\ECart\App.MsTest.Automation\bin\Debug\WebDriver.xml
+G:\STUDENT PROJECTS\ECart\App.MsTest.Automation\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+G:\STUDENT PROJECTS\ECart\App.MsTest.Automation\obj\Debug\App.MsTest.Automation.csprojResolveAssemblyReference.cache
+G:\STUDENT PROJECTS\ECart\App.MsTest.Automation\obj\Debug\App.MsTest.Automation.dll
+G:\STUDENT PROJECTS\ECart\App.MsTest.Automation\obj\Debug\App.MsTest.Automation.pdb
+G:\STUDENT PROJECTS\ECart\App.MsTest.Automation\bin\Debug\IEDriverServer.exe
+G:\STUDENT PROJECTS\ECart\App.MsTest.Automation\bin\Debug\Ionic.Zip.dll
+G:\STUDENT PROJECTS\ECart\App.MsTest.Automation\bin\Debug\Newtonsoft.Json.dll

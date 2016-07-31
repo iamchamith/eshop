@@ -15,8 +15,19 @@ namespace Api.Ecart.Controllers
         [HttpGet]
         [CompressContent]
         [AdminAccess]
-        public JsonResult ReadCategories (string id="0") 
+        public JsonResult ReadCategories () 
         {
+          
+            return new JsonContractResult
+            {
+                Data = new { data = ReadCategoryProcess() },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        [NonAction]
+        public ActionDetails ReadCategoryProcess(string id = "0") {
+
             var categoryDetails = categoryDbService.ReadCategorys(SessionConfig.DomainId);
             Mapper.CreateMap<CategoryBo, CategoryViewModel>();
             if (categoryDetails.ResponseCode == App.Utilities.ResponseCode.Success)
@@ -26,20 +37,19 @@ namespace Api.Ecart.Controllers
                 {
                     list.Where(p => p.Category_Id == id);
                 }
-                List<CategoryViewModel> brands = list.Select(x => AutoMapper.Mapper.Map<CategoryViewModel>(x)).ToList();
-                foreach (var item in brands)
+                List<CategoryViewModel> categories = list.Select(x => AutoMapper.Mapper.Map<CategoryViewModel>(x)).ToList();
+                foreach (var item in categories)
                 {
                     item.Image = $"{GlobleConfig.baseUrlFiles}/{Enums.FileType.Categories.ToString()}/thumb/" + ((item.Image == null) ? "no.jpg" : item.Image);
                 }
-                categoryDetails.Content = brands;
+                categoryDetails.Content = categories;
             }
-            return new JsonContractResult
-            {
-                Data = new { data = categoryDetails },
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
+            return categoryDetails;
         }
 
+        [HttpGet]
+        [CompressContent]
+        [AdminAccess]
         public JsonResult ReadCategoryById(string id) {
 
             var x = categoryDbService.ReadCategoryById(id);

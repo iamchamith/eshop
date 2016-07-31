@@ -22,8 +22,18 @@ var Ecart;
                                 template: '<img src="#:image#" alt="#:brandName#" class="img-thumbnail entityThumbImage" />'
                             },
                             { field: "brandName" },
-                            { field: "enable" },
-                            { command: [
+                            {
+                                template: '<img src="../../asset/images/icons/#= enable ?"yes.png" :"no.png"#" />',
+                                field: "enable",
+                                title: "enable",
+                                width: 150,
+                                filterable: {
+                                    multi: true
+                                }
+                            },
+                            {
+                                title: "action",
+                                command: [
                                     {
                                         name: "View",
                                         click: function (e) {
@@ -43,7 +53,20 @@ var Ecart;
                 read: function (query) {
                     new Ecart.Ajax.apiConnector().callservice(read, { id: query }, Ecart.Ajax.webMethod.Get).done(function (e) {
                         console.log(e);
-                        $('#gvBrands').data("kendoGrid").setDataSource(new kendo.data.DataSource({ data: e.data.content, pageSize: 10 }));
+                        if (e.data.responseCode == Number(Ecart.Enums.ResponseCode.Success)) {
+                            $('#gvBrands').data("kendoGrid").setDataSource(new kendo.data.DataSource({ data: e.data.content, pageSize: 10 }));
+                            View.crud.bindImageToSlider(e.data.content);
+                        }
+                        else {
+                            new Ecart.Messages.sweetAlerts().errorAlert();
+                        }
+                    });
+                },
+                bindImageToSlider: function (data) {
+                    $.each(data, function (i, d) {
+                        if (d.enable) {
+                            $("#Brand_slider").append('<img class="sliderItem"  width="285" height="285" src="' + d.image + '" />');
+                        }
                     });
                 }
             };

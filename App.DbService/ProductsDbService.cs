@@ -10,13 +10,19 @@ using AutoMapper;
 
 namespace App.DbService
 {
-    interface IProductsDbService
+    public interface IProductsDbService
     {
         ActionDetails CreateProduct(ProductBo Product);
         ActionDetails ReadProducts(string DomainId);
         ActionDetails ReadProductById(string ProductId);
         ActionDetails UpdateProduct(ProductBo Product);
         ActionDetails DeleteProduct(ProductBo Product);
+        ActionDetails InsertImage(string imageId, string productId,string domainId);
+        ActionDetails DeleteImage(string imageId, string domainId);
+        ActionDetails ReadImages(string domainId);
+        ActionDetails UpdateImageDefault(string imageId, string domainId);
+
+
     }
 
     public class ProductsDbService : BaseService, IProductsDbService
@@ -28,7 +34,7 @@ namespace App.DbService
                 Mapper.CreateMap<ProductBo, Product>();
                 dba.Products.Add(Mapper.Map<Product>(product));
                 dba.SaveChanges();
-                return ResponseMessage.Success();
+                return ResponseMessage.Success(content:product.ProductId);
             }
             catch (Exception ex)
             {
@@ -103,6 +109,78 @@ namespace App.DbService
                 obj.Seo = product.Seo;
                 dba.SaveChanges();
                 return ResponseMessage.Success();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage.Error(ex);
+            }
+        }
+
+        public ActionDetails InsertImage(string imageId, string productId, string domainId)
+        {
+            try
+            {
+                dba.ProductsImages.Add(new ProductsImage {
+                     DomainId = domainId,
+                     ImagePath =imageId,
+                     IsDefault =false,
+                     ProductId =productId,
+                });
+                dba.SaveChanges();
+                return ResponseMessage.Success();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage.Error(ex);
+            }
+        }
+
+        public ActionDetails DeleteImage(string imageId, string domainId)
+        {
+            try
+            {
+                dba.ProductsImages.Remove(dba.ProductsImages.FirstOrDefault(p => p.DomainId == domainId && p.ImagePath == imageId));
+                dba.SaveChanges();
+                return ResponseMessage.Success();
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage.Error(ex);
+            }
+        }
+
+        public ActionDetails ReadImages(string domainId)
+        {
+            try
+            {
+                return ResponseMessage.Success(content: dba.ProductsImages.Where(p => p.DomainId == domainId).ToList());
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage.Error(ex);
+            }
+        }
+
+        public ActionDetails UpdateImageDefault(string imageId, string domainId)
+        {
+            try
+            {
+                var x = dba.ProductsImages.FirstOrDefault(p => p.DomainId == domainId && p.ImagePath == imageId);
+                if (x == null) {
+                    return ResponseMessage.Error("invalied image");
+                }
+                else
+                {
+                    var y = dba.ProductsImages.Where(p => p.DomainId == domainId);
+                    foreach (var item in y)
+                    {
+                        item.IsDefault = false;
+                    }
+                    dba.SaveChanges();
+                    x.IsDefault = true;
+                    dba.SaveChanges();
+                }
+                return ResponseMessage.Success(content: dba.ProductsImages.Where(p => p.DomainId == domainId).ToList());
             }
             catch (Exception ex)
             {

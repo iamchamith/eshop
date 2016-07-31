@@ -680,6 +680,8 @@
     <Content Include="asset\dist\js\sb-admin-2.js" />
     <Content Include="asset\dist\js\sweetalert-dev.js" />
     <Content Include="asset\dist\js\sweetalert.min.js" />
+    <Content Include="asset\images\icons\yes.png" />
+    <Content Include="asset\images\icons\no.png" />
     <Content Include="asset\index.html" />
     <Content Include="asset\js\flot-data.js" />
     <Content Include="asset\js\morris-data.js" />

@@ -22,7 +22,15 @@ var Ecart;
                                 template: '<img src="#:image#" alt="#:name#" class="img-thumbnail entityThumbImage" />'
                             },
                             { field: "name", title: "Category name" },
-                            { field: "enable" },
+                            {
+                                template: '<img src="../../asset/images/icons/#= enable ?"yes.png" :"no.png"#" />',
+                                field: "enable",
+                                title: "enable",
+                                width: 150,
+                                filterable: {
+                                    multi: true
+                                }
+                            },
                             {
                                 command: [
                                     {

@@ -7,7 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using Api.Ecart.Utility;
- 
+using App.Utilities;
+
 namespace Api.Ecart.Controllers
 {
     public class BrandsController : BaseController
@@ -16,11 +17,21 @@ namespace Api.Ecart.Controllers
         [HttpGet]
         [CompressContent]
         [AdminAccess]
-        public JsonResult ReadBrands(string id="0")
+        public JsonResult ReadBrands()
         {
+            return new JsonContractResult
+            {
+                Data = new { data = ReadBrandsProcess() },
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet
+            };
+        }
+
+        [NonAction]
+        public ActionDetails ReadBrandsProcess(string id = "0") {
+
             var brandDetails = brandsService.ReadBrands(SessionConfig.DomainId);
             Mapper.CreateMap<BrandBo, BrandViewModel>();
-           
+
             if (brandDetails.ResponseCode == App.Utilities.ResponseCode.Success)
             {
                 var list = (List<BrandBo>)brandDetails.Content;
@@ -35,11 +46,7 @@ namespace Api.Ecart.Controllers
                 }
                 brandDetails.Content = brands;
             }
-            return new JsonContractResult
-            {
-                Data = new { data = brandDetails },
-                JsonRequestBehavior = JsonRequestBehavior.AllowGet
-            };
+            return brandDetails;
         }
 
         [HttpGet]

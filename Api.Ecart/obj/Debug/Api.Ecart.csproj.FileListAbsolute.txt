@@ -17,7 +17,6 @@ G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\Api.Ecart.pdb
 G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\Antlr3.Runtime.dll
 G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.Bo.dll
 G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.DbService.dll
-G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.UnitTest.dll
 G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.Utilities.dll
 G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\AutoMapper.dll
 G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\EntityFramework.dll
@@ -58,7 +57,6 @@ G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.DBAccess.dll
 G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.Poco.dll
 G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.Bo.pdb
 G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.DbService.pdb
-G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.UnitTest.pdb
 G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\App.Utilities.pdb
 G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\AutoMapper.xml
 G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\FluentValidation.pdb
@@ -114,3 +112,5 @@ G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\zh-CN\FluentValidation.resources.dll
 G:\STUDENT PROJECTS\ECart\Api.Ecart\obj\Debug\Api.Ecart.csprojResolveAssemblyReference.cache
 G:\STUDENT PROJECTS\ECart\Api.Ecart\obj\Debug\Api.Ecart.dll
 G:\STUDENT PROJECTS\ECart\Api.Ecart\obj\Debug\Api.Ecart.pdb
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\WebDriver.dll
+G:\STUDENT PROJECTS\ECart\Api.Ecart\bin\WebDriver.xml
